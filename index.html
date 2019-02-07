@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        #app {width:1280px;height:500px;margin:0 auto;}
+        .half {width:50%;height:500px;float:left;border:1px solid #ddd;box-sizing:border-box}
+        .half:first-child {border-right:0}
+        .half:after {display:block;clear:both;content:""}
+        .barchart {width:100%;height:500px}
+        .lable_txt {font-size:11px}
+        @page {
+            size: A4;
+            margin: 10px;
+        }
+        @media print {
+            #app {
+                width: 100%;
+            }
+        }
+        .radarchart {padding:14px 0 24px; text-align:center;}
+        .radarchart .line {stroke:#e8e8e8;}
+        .radarchart .legend {font-size:14px;font-weight:bold;fill:#444;}
+        .line_median {stroke:#0c0c0c;stroke-dasharray:2}
+        .median_txt {font-size:13px}
+        .combie_chart {overflow:visible}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="half radarchart"></div>
+        <div class="half" id="combie">
+        </div>
+    </div>
+    <script src="//www.saraminimage.co.kr/js/libs/d3.v4.min.js"></script>
+    <script src="d3.ie9.util.js"></script>
+    <script src="sri_radar.js"></script>
+    <script src="sri_d3_bar.js"></script>
+    <script>
+	    document.addEventListener("DOMContentLoaded", function () {
+		    combinationChart();
+		    radarChart();
+        });
+	    function radarChart() {
+		    var width = 200,
+			    height = 200,
+			    lineRange = ['#e8e8e8'],
+			    colorRange = ['rgba(91, 118, 245, 0.8)', 'rgba(255, 129, 72, 0.8)'];
+
+		    // Config for the Radar oasis_chart
+		    var config = {
+			    w : width,
+			    h : height,
+			    maxValue : 100,
+			    levels : 5,
+			    factorLegend: .7,
+			    TranslateX : 90,
+			    TranslateY : 40,
+			    ExtraWidthX : 140,
+			    ExtraWidthY : 100,
+			    textX : 5,
+			    textY : -8,
+			    lineColor : lineRange,
+			    color : colorRange
+		    };
+		    var data = [{
+			    "idx" : "평균",
+			    "area" : {
+				    "성실성" : 90,
+				    "정직/겸손" : 50,
+				    "정서안정" : 9,
+				    "외향성" : 60,
+				    "원만성" : 30,
+				    "개방성" : 80
+
+			    }
+		    },
+            {
+                "idx" : "내점수",
+                "area" : {
+                    "성실성" :  95.2,
+                    "정직/겸손" : 50.5,
+                    "정서안정" : 70.3,
+                    "외향성" : 70.1,
+                    "원만성" : 35.3,
+                    "개방성" : 85.5
+                }
+            }];
+		    RadarChart.draw('.radarchart', data, config);
+	    }
+
+
+	    function combinationChart() {
+		    var width = 500,
+			    height = 300,
+			    colorScheme = [
+				    '#9400D3','#8A00CA', '#7B00B0',
+				    '#228B22', '#228B22', '#228B22',
+				    '#FFD700', '#FFD700', '#FFD700',
+				    '#FFFACD', '#FFFACD', '#FFFACD',
+				    '#CD5C5C', '#CD5C5C', '#CD5C5C',
+				    '#F08080', '#F08080', '#F08080'
+                ]
+
+		    var config = {
+			    w: width,
+			    h: height,
+			    mTop: 40,
+			    mRight: 0,
+			    mBottom: 50,
+			    mLeft: 25,
+                medianData: 55.3
+		    }
+
+		    var data = [
+			    {'key':'성취지향', "value": 65.2},
+			    {'key':'체게성', "value": 50.2},
+			    {'key':'신중성', "value": 70.3},
+			    {'key':'심미성', "value": 80.4},
+			    {'key':'호기심', "value": 60.2},
+			    {'key':'비관습성', "value": 70.5},
+			    {'key':'사교성', "value": 72.1},
+			    {'key':'활력성', "value": 80.4},
+			    {'key':'주도성', "value": 70.1},
+			    {'key':'이타성', "value": 60.4},
+			    {'key':'수용성', "value": 70.5},
+			    {'key':'협조성', "value": 80.1},
+			    {'key':'침착성', "value": 78.3},
+			    {'key':'낙관성', "value": 78.3},
+			    {'key':'자립성', "value": 68.2},
+			    {'key':'공정성', "value": 56.4},
+			    {'key':'비탈욕성', "value": 70.2},
+			    {'key':'겸손성', "value": 77.3}
+		    ]
+		    var dataRange = {min: 0, max: 100}
+		    CombinationChart.draw('#combie', data, dataRange, config, colorScheme);
+	    }
+
+    </script>
+
+</body>
+</html>
