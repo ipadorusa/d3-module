@@ -1,0 +1,27 @@
+{
+  "name": "d3-module",
+  "version": "1.0.0",
+  "description": "\"# d3-module\"",
+  "main": "ui.js",
+  "scripts": {
+    "dev": "webpack --mode=development",
+    "prod": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipadorusa/d3-module.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ipadorusa/d3-module/issues"
+  },
+  "homepage": "https://github.com/ipadorusa/d3-module#readme",
+  "devDependencies": {
+    "d3": "^4.13.0",
+    "path": "^0.12.7",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}

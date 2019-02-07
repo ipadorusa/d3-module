@@ -1,23 +1,20 @@
-/**
- * Created by rainguy1 on 2019-01-17.
- */
-var RadarChart = {
+module.exports = function(selector, d, options) {
 	draw: function (selector, d, options) {
 
-		var reformatData = d;
-		var d = [];
-		var textValue = [];
+		let reformatData = d;
+		let d = [];
+		let textValue = [];
 		for (var i = 0; i < reformatData.length; i++) {
-			var area = reformatData[i].area;
-			var area_keys = Object.keys(area);
-			var tempArry = [];
-			for (var j = 0; j < area_keys.length; j++) {
+			const area = reformatData[i].area;
+			const area_keys = Object.keys(area);
+			const tempArry = [];
+			for (let j = 0; j < area_keys.length; j++) {
 				tempArry.push({"area": area_keys[j], "value": area[area_keys[j]]});
 			}
 			d.push(tempArry);
 		}
 
-		var cfg = {
+		let cfg = {
 			radius: 2,
 			w: 300,
 			h: 300,
@@ -34,27 +31,27 @@ var RadarChart = {
 			color: ['#7b91f8', '#fa6a71']
 		};
 		if ('undefined' !== typeof options) {
-			for (var i in options) {
+			for (let i in options) {
 				if ('undefined' !== typeof options[i]) {
 					cfg[i] = options[i];
 				}
 			}
 		}
 
-		var allAxis = (d[0].map(function (i, j) {
+		const allAxis = (d[0].map(function (i, j) {
 			return i.area
 		}));
 
-		var textAxis = (d[1].map(function (i, j) {
+		const textAxis = (d[1].map(function (i, j) {
 			textValue.push(i.value);
 			return textValue;
 		}));
 
 
-		var total = allAxis.length;
-		var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
+		const total = allAxis.length;
+		const radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
 		d3.select(selector).select("svg").remove();
-		var g = d3.select(selector)
+		const g = d3.select(selector)
 			.append("svg")
 			.attr("width", cfg.w + cfg.ExtraWidthX)
 			.attr("height", cfg.h + cfg.ExtraWidthY)
@@ -62,8 +59,8 @@ var RadarChart = {
 			.attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
 
 		//Circular segments
-		for (var j = 0; j < cfg.levels; j++) {
-			var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
+		for (let j = 0; j < cfg.levels; j++) {
+			let levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
 			g.selectAll(".levels")
 				.data(allAxis)
 				.enter()
@@ -79,7 +76,7 @@ var RadarChart = {
 		}
 		//Text indicating at what % each level is
 		series = 0;
-		var axis = g.selectAll(".axis")
+		const axis = g.selectAll(".axis")
 			.data(allAxis)
 			.enter()
 			.append("g")
