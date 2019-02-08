@@ -1,27 +1,33 @@
 {
-  "name": "d3-module",
+  "name": "resources",
   "version": "1.0.0",
-  "description": "\"# d3-module\"",
-  "main": "ui.js",
+  "description": "",
+  "main": "webpack.config.js",
   "scripts": {
-    "dev": "webpack --mode=development",
-    "prod": "webpack --mode=production"
+    "build:dev": "webpack",
+    "build:production": "cross-env NODE_ENV=production webpack",
+    "watch": "webpack --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ipadorusa/d3-module.git"
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "extract-loader": "^2.0.1",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.9.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-cli": "^6.0.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ipadorusa/d3-module/issues"
-  },
-  "homepage": "https://github.com/ipadorusa/d3-module#readme",
-  "devDependencies": {
-    "d3": "^4.13.0",
-    "path": "^0.12.7",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+  "dependencies": {
+    "d3": "4.12.2"
   }
 }
