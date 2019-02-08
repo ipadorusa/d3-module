@@ -1,0 +1,61 @@
+.panel_menu {
+  overflow-x:hidden;
+  overflow-y:auto;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  padding:$marginPanel;
+  width:$widthPanel;
+  box-sizing:border-box;
+  color:$white;
+  line-height:$lineheight;
+  background:$primaryColorGray;
+  @include changeScroll($primaryColorGray, #5d626b);
+  .primary_button_area {
+    margin:-#{$marginPanel} -#{$marginPanel} 0 -#{$marginPanel};
+    padding:$marginPanel;
+    background:mix($primaryColorGray, $black, 76%);
+    &:only-child {
+      background:none;
+    }
+  }
+  .tit_panel {
+    display:block;
+    margin:26px 0 7px;
+    font-weight:normal;
+    line-height:$lineheight;
+  }
+  .search_area {
+    margin:20px 0;
+    @include clearfix();
+    .btn_search {
+      float:right;
+      width:113px;
+    }
+  }
+  .switch_area {
+    .row {
+      margin-top:9px;
+    }
+    .col_text {
+      margin-top:2px;
+    }
+  }
+  .adm_btn_l,
+  .adm_btn_m,
+  .adm_typo,
+  .adm_sel {
+    width:$full;
+  }
+  .adm_btn_l,
+  .adm_btn_m {
+    padding-right:0;
+    padding-left:0;
+  }
+  .btn_reset_data {
+    font-size:11px;
+  }
+  @extend %insidePanelTab; // _tab.scss
+  @extend %insidePanelGrid; // _grid.scss
+}

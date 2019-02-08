@@ -1,0 +1,97 @@
+html,
+body,
+header,
+nav,
+aside,
+main,
+article,
+section,
+footer,
+h1,
+h2,
+h3,
+h4,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p,
+em,
+address,
+blockquote,
+q,
+form,
+fieldset,
+input,
+textarea,
+select,
+button,
+iframe {
+  margin:0;
+  padding:0;
+}
+body {
+  line-height:1;
+  font-family:"Malgun Gothic",Dotum,sans-serif;
+}
+header,
+nav,
+aside,
+main,
+article,
+section,
+footer {
+  display:block;
+}
+input,
+textarea,
+select,
+button {
+  border-radius:0;
+  box-sizing:border-box;
+  font-family:inherit;
+}
+ul,
+ol {
+  list-style:none;
+}
+blockquote,
+q {
+  quotes:none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content:"";
+}
+img,
+fieldset,
+iframe {
+  border:none;
+}
+hr {
+  display:none;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+em,
+address {
+  font-style:normal;
+}
+a {
+  text-decoration:none;
+}
+button {
+  border:none;
+  border-radius:0;
+  background:none;
+  cursor:pointer;
+}
+input[type=text]::-ms-clear {
+  display:none;
+}

@@ -1,0 +1,30 @@
+.adm_msg_alert {
+  color:$fontColor5;
+  line-height:17px;
+  &:before {
+    @include makePseudoIcon();
+    @include size(17px);
+    margin-right:6px;
+    border:1px solid currentColor;
+    border-radius:50%;
+    letter-spacing:normal;
+    line-height:15px;
+    text-align:center;
+    content:"!";
+  }
+  .adm_grid .col &,
+  .adm_grid [class*="col_"] & {
+    margin-top:6px;
+  }
+}
+.adm_msg_invalid {
+  display:block;
+  margin-top:5px;
+  color:$primaryColorOrange;
+  font-size:$fontSizeXS;
+  &:before {
+    margin-right:3px;
+    letter-spacing:normal;
+    content:"!";
+  }
+}

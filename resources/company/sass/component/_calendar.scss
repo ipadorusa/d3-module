@@ -1,0 +1,186 @@
+.adm_wrap_calendar {
+  position:relative;
+  max-width:180px;
+  color:$fontColor2;
+  .wrap_calendar_top {
+    position:relative;
+    padding-top:$marginCalendar;
+    line-height:18px;
+    text-align:center;
+    .selected_year {
+      font-size:$fontSizeL;
+      font-weight:bold;
+      letter-spacing:normal;
+    }
+    > button {
+      &[class^="btn_year_"] {
+        position:absolute;
+        top:$marginCalendar;
+        @include size(27px, 18px);
+        background:url($imageIco + "ico_calendar_year.png") no-repeat 50% 0;
+      }
+      &.btn_year_prev {
+        left:0;
+      }
+      &.btn_year_next {
+        right:0;
+        background-position-y:100%;
+      }
+    }
+  }
+
+  // vdp-datepicker
+  .vdp-datepicker__calendar {
+    top:32px;
+    padding:0 10px 10px;
+    width:182px;
+    letter-spacing:normal;
+    border-color:#757980;
+    header {
+      padding:9px 0 14px;
+      line-height:18px;
+      @include clearfix();
+      > span {
+        font-size:14px;
+        font-weight:bold;
+      }
+      .prev,
+      .next {
+        &:not(.disabled):hover {
+          background:none;
+        }
+        &:after {
+          top:4px;
+          transform:scale(0.9);
+          transform-origin:50% 0;
+        }
+      }
+      .prev:after,
+      .prev.disabled:after {
+        left:0;
+        border-right-width:8px;
+      }
+      .next:after,
+      .next.disabled:after {
+        right:-5px;
+        left:auto;
+        border-left-width:8px;
+      }
+      .up:not(.disabled):hover {
+        background:none;
+      }
+    }
+    .cell {
+      padding:0;
+      height:auto;
+      line-height:1;
+      &.day-header {
+        height:30px;
+        line-height:28px;
+        font-size:$fontSizeM;
+        &:hover {
+          background:none;
+        }
+      }
+      &.selected,
+      &.selected:hover {
+        color:$white;
+        background:$primaryColor !important;
+      }
+      &:not(.blank):not(.disabled).day,
+      &:not(.blank):not(.disabled).month,
+      &:not(.blank):not(.disabled).year {
+        &:hover {
+          border-color:transparent;
+          color:$white;
+          background:rgba($primaryColor, 0.7);
+        }
+      }
+      &:not(.blank):not(.disabled).year {
+        &:hover {
+          border-color:$borderColor;
+        }
+      }
+    }
+    .day {
+      height:22px;
+      border-radius:50%;
+      line-height:19px;
+    }
+    .month {
+      margin:2px 2px 0 3px;
+      @include size(34px);
+      border-radius:50%;
+      line-height:30px;
+      white-space:nowrap;
+    }
+    .year {
+      margin:0 -1px -1px 0;
+      @include size(33%, 32px);
+      line-height:28px;
+      border:1px solid $borderColor;
+      &:nth-of-type(3n - 1) {
+        width:35%;
+      }
+    }
+  }
+}
+.adm_calendar {
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  right:-1px;
+  left:-1px;
+  z-index:$zindexCalendar;
+  border:1px solid #757980;
+  background:$white;
+  li {
+    float:left;
+    box-sizing:border-box;
+    > button {
+      padding-bottom:2px;
+      @include size($full, 30px);
+      font-size:$fontSizeM;
+      letter-spacing:normal;
+    }
+    &.selected {
+      > button {
+        color:$white;
+        background:$primaryColor;
+      }
+    }
+  }
+  .list_calendar_year {
+    @include clearfix();
+    margin:($marginCalendar - 1) $marginCalendar;
+    border:solid $borderColor;
+    border-width:0 0 1px 1px;
+    li {
+      width:33%;
+      border:solid $borderColor;
+      border-width:1px 1px 0 0;
+      &:nth-of-type(3n - 1) {
+        width:34%;
+      }
+      &.selected {
+        > button {
+          position:relative;
+          z-index:1;
+          outline:1px solid $primaryColor;
+        }
+      }
+    }
+  }
+  .list_calendar_month {
+    @include clearfix();
+    margin:12px 14px 11px;
+    li {
+      padding:1px 0;
+      width:25%;
+      > button {
+        @include size(34px);
+        border-radius:50%;
+      }
+    }
+  }
+}

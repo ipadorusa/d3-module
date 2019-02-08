@@ -1,0 +1,213 @@
+// input text
+.adm_typo {
+  padding:0 10px 3px;
+  height:$sizeM;
+  background:$white;
+  @include inputVariation();
+  &::-ms-clear {
+    display:none;
+  }
+  &.numeric {
+    letter-spacing:normal;
+    text-align:right;
+  }
+  &.type_calendar {
+    padding-left:38px;
+    background:$white url($imageIco + "ico_calendar.png") no-repeat 9px 40%;
+  }
+
+  // size
+  @each $class, $size in ("l", $sizeL), ("s", $sizeS) {
+    &.size_#{$class} {
+      height:$size;
+      @if $class == "s" {
+        font-size:$fontSizeXS;
+      }
+    }
+  }
+}
+
+// textarea
+.adm_tarea {
+  padding:10px 12px 10px 10px;
+  background:$white;
+  resize:none;
+  @include inputVariation();
+}
+
+// select box
+.adm_sel {
+  padding:0 20px 3px 10px;
+  height:$sizeM;
+  background:$white url($imageVqIco + "ico_selectbox.png") no-repeat;
+  background-position:calc(100% - 8px) 0; // for IE11
+  @include prefix(appearance, none, webkit);
+  @include inputVariation();
+  &::-ms-expand {
+    display:none;
+  }
+  &:disabled {
+    background-position-y:$sizeM * -1;
+  }
+
+  // size
+  @each $class, $size in ("l", $sizeL), ("s", $sizeS) {
+    &.size_#{$class} {
+      $diffSize:($size - $sizeM) / 2;
+      height:$size;
+      background-position-y:$diffSize;
+      @if $class == "s" {
+        font-size:$fontSizeXS;
+      }
+      &:disabled {
+        background-position-y:($sizeM * -1) + $diffSize;
+      }
+    }
+  }
+}
+
+.adm_sel_text {
+  padding-right:17px;
+  border:none;
+  font-size:$fontSizeM;
+  letter-spacing:$letterspacing;
+  @include prefix(appearance, none, webkit);
+  &::-ms-expand {
+    display:none;
+  }
+  background:url($imageVqIco + "ico_selectbox.png") no-repeat 100% -6px;
+}
+
+// checkbox
+.adm_chk {
+  display:inline-block;
+  margin:2px 0;
+  line-height:25px;
+  > input {
+    position:absolute;
+    opacity:0;
+    + .lbl:before {
+      display:inline-block;
+      margin:4px 8px 0 0;
+      @include size($chkSizeM);
+      vertical-align:top;
+      background:url($imageVqIco + "ico_input.png") no-repeat 0 0;
+      content:"";
+    }
+    + .lbl.reverse:before {
+      float:right;
+      margin-right:0;
+      margin-left:8px;
+    }
+  }
+  > input {
+    @include checkboxVariation($chkSizeM);
+  }
+  & + & {
+    margin-left:30px;
+  }
+}
+
+// radio button
+.adm_rdo {
+  @extend .adm_chk;
+  > input[type=radio] {
+    + .lbl:before {
+      background-position-x:#{"-" + (($chkSizeM + 10) * 1)};
+    }
+  }
+}
+
+// toggle switch
+.adm_switch {
+  display:inline-block;
+  line-height:normal;
+  input[type=checkbox] {
+    position:absolute;
+    z-index:-1;
+    opacity:0;
+  }
+  .lbl {
+    display:inline-block;
+    @include size(48px, $sizeM);
+    border:1px solid $borderColorButton;
+    box-sizing:border-box;
+    color:$fontColor2;
+    font-size:$fontSizeM;
+    line-height:$sizeM - 3;
+    text-align:center;
+    vertical-align:top;
+    cursor:default;
+  }
+  input[type=checkbox]:checked {
+    + .lbl {
+      border-color:$primaryColor;
+      color:$white;
+      background:$primaryColor;
+    }
+  }
+
+  // size
+  @each $class, $size in ("l", $sizeL), ("s", $sizeS) {
+    &.size_#{$class} .lbl {
+      @if $class == "s" {
+        width:40px;
+        font-size:$fontSizeXS;
+      }
+      @else {
+        width:54px;
+      }
+      height:$size;
+      line-height:$size - 3;
+    }
+  }
+}
+
+// inside panel
+.darken {
+  .adm_typo:not(.invalid) {
+    border-color:$white;
+    &:hover {
+      border-color:$black;
+    }
+    &:disabled {
+      border-color:$borderColorPanel;
+      color:$disabledColor;
+      background-color:$borderColorPanel;
+    }
+  }
+  .adm_sel:not(.invalid) {
+    border-color:$white;
+    &:hover {
+      border-color:$black;
+    }
+    &:disabled {
+      border-color:$borderColorPanel;
+      color:$disabledColor;
+      background-color:$borderColorPanel;
+      background-position-y:$sizeM * -2;
+
+      @each $class, $size in ("l", $sizeL), ("s", $sizeS) {
+        &.size_#{$class} {
+          $diffSize:($size - $sizeM) / 2;
+          background-position-y:($sizeM * -2) + $diffSize;
+        }
+      }
+      &::-ms-value {
+        color:$disabledColor;
+      }
+    }
+  }
+  .adm_switch {
+    .lbl {
+      border-color:#979797;
+      color:$white;
+    }
+    input[type=checkbox]:checked {
+      + .lbl {
+        border-color:$primaryColorPanel;
+        background:$primaryColorPanel;
+      }
+    }
+  }
+}

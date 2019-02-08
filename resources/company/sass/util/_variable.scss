@@ -1,0 +1,245 @@
+// image url
+$image:"//www.saraminimage.co.kr/recruitin/back/";
+$imageIco:$image + "ico/";
+$imageBg:$image + "bg/";
+$imageThumb:$image + "thumb/";
+
+$imageVq:"//www.saraminimage.co.kr/sri/vq/back/";
+$imageVqIco:$imageVq + "ico/";
+$imageVqBg:$imageVq + "bg/";
+$imageVqThumb:$imageVq + "thumb/";
+
+// typography
+$fontColor:#222;
+$fontColor2:#444;
+$fontColor3:#666;
+$fontColor4:#888;
+$fontColor5:#777;
+$fontColor6:#ff0000;
+$fontColor7:#000;
+$fontColor8:#333;
+$fontColor9:#555;
+$linkColor:$fontColor;
+$placeholder:#7a7a7a;
+$fontFamily:"Malgun Gothic",Dotum,sans-serif;
+$fontSize2XL:44px;
+$fontSizeXL:24px;
+$fontSize2L:20px;
+$fontSizeL:18px;
+$fontSize2M:17px;
+$fontSizeM:15px;
+$fontSize2XS:14px;
+$fontSizeXS:13px;
+$fontSizeXSS:11px;
+$fontSizeS:10px;
+$letterspacing:-1px;
+$letterspacing2S:-2px;
+$lineheight:17px;
+
+// color
+$black:#000;
+$white:#fff;
+
+$primaryColor:#5a82f0;
+$primaryColorGray:#41464c;
+$primaryColorOrange:#ff665c;
+$primaryColorYellow:#f09c12;
+$primaryColorBorder:#4876ef;
+$secondaryColor:#fbfcff;
+
+$borderColor:#e1e3eb;
+$borderColorButton:#cfd1d7;
+$borderColorTable:#4b4b4b;
+$borderColorEditor:#ff9f00;
+
+$invalidBgInput:#fffbe5;
+$disabledColor:#c2c2c2;
+$disabledBgInput:#f1f1f1;
+$disabledBgButton:#c5c5c5;
+
+$contentColor:#f6f7fd;
+
+// FIT
+$fitColorAPlus:#4f00ed;
+$fitColorA:#0f72f8;
+$fitColorB:#00a05d;
+$fitColorC:#ff4e06;
+$fitColorD:#f53b57;
+$fitColorNone:#000;
+
+// setting homepage
+$primaryColorSetting:#1d1d1d;
+$lnbColorSetting:#2f2f2f;
+
+// inside panel color
+$primaryColorPanel:#5d86f7;
+$borderColorPanel:#696e74;
+
+// size
+$half:50%;
+$full:100%;
+
+$sizeL:42px;
+$sizeM:32px;
+$sizeS:23px;
+
+$chkSizeM:18px;
+
+$sizePcMin:1280px;
+$sizeMobile:320px;
+$sizeTablet:768px;
+
+$sizePopupL:802px;
+$sizePopupM:527px;
+
+$heightHeader:70px;
+$widthLnb:210px;
+//$widthLnbFolding:50px;
+$widthPanel:210px;
+$heightPageTitle:45px;
+$widthContentMin:1260px;
+
+$widthPagination:24px;
+$heightPagination:34px;
+
+$heightTab:40px;
+$widthTabVertical:120px;
+
+
+
+// gap
+$marginContentLeft:43px;
+$marginContentRight:15px;
+$marginContent:$marginContentLeft + $marginContentRight;
+$marginContentPopup:30px;
+$marginPanel:15px;
+$marginGrid:1.4%;
+$marginCalendar:10px;
+
+// z-index
+$zindexPopupInner:55;
+$zindexPopup:50;
+$zindexHeader:45;
+$zindexLnbInner:40;
+$zindexLnb:35;
+$zindexCalendar:35;
+$zindexEditorActive:30;
+$zindexEditorDim:25;
+$zindexEditor:20;
+
+// gnb icon
+$gnbIconSize:24px;
+
+// lnb icon
+$lnbIconSize:24px;
+$lnbIconAdm:(
+        1:my,
+        2:test,
+        3:result
+);
+
+$lnbIconControl:(
+        1:del,
+        2:edit,
+        3:layout
+);
+
+// button
+$buttonSelector:"[class^=adm_btn_]";
+$buttonStyle:(
+        size_l:(
+                margin:4px,
+                padding:32px,
+                icon_size:24px,
+                icon_gap:6px,
+                font:$fontSizeXS
+        ),
+        size_m:(
+                margin:4px,
+                padding:12px,
+                icon_size:16px,
+                icon_gap:5px,
+                font:$fontSizeXS
+        ),
+        size_s:(
+                margin:1px,
+                padding:7px,
+                icon_size:13px,
+                icon_gap:2px,
+                font:$fontSizeXS
+        )
+);
+$buttonIconName:(
+        1:load,
+        2:edit,
+        3:remove,
+        4:img,
+        5:map
+);
+
+// shadow
+$effectShadow:0 1px 7px 0 rgba(30, 49, 147, 0.05);
+
+// theme back
+$themesBack:(
+        green:(
+                body:#f6fdf6,
+                primary:#01be01,
+                secondary:#f6fdf6,
+                primaryBorder:#01be01
+        ),
+        red:(
+                body:#fdf6f6,
+                primary:#f00,
+                secondary:#fdf6f6,
+                primaryBorder:#f00
+        ),
+        yellow:(
+                body:#fdfdf6,
+                primary:#be9801,
+                secondary:#fdfdf6,
+                primaryBorder:#be9801
+        )
+);
+
+// theme front
+$themesFront:(
+        1:( // blue
+                primary:#4874e6,
+                secondary:#182e69,
+                gradient_l:#4874e6,
+                gradient_r:#638bf1
+        ),
+        2:( // red
+                primary:#ce291a,
+                secondary:#2f3546,
+                gradient_l:#f55550,
+                gradient_r:#ec2b2b
+        ),
+        3:( // yellow
+                primary:#9f5e00,
+                secondary:#2f3546,
+                gradient_l:#eabd00,
+                gradient_r:#ecc600
+        ),
+        4:( // green
+                primary:#31b305,
+                secondary:#174c1f,
+                gradient_l:#2daa04,
+                gradient_r:#32b506
+        )
+);
+$typoType1:"Noto Sans KR",sans-serif;
+$typoType2:"Nanum Gothic",sans-serif;
+$typoType3:Dotum,sans-serif;
+$themesTypo:(
+        1:$typoType1,
+        2:$typoType2,
+        3:$typoType3
+);
+
+// media
+$pc:pc;
+$tablet:tablet;
+$mobile:mobile;
+$print:print;

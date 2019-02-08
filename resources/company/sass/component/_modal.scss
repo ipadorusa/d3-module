@@ -1,0 +1,275 @@
+.adm_modal {
+  position:absolute;
+  top:0;
+  left:0;
+  width:$full;
+  @include fontDefault();
+  font-size:$fontSizeM;
+  &:after {
+    display:block;
+    content:"";
+    @include bgModal($black, 0.65);
+  }
+  > .inner {
+    position:relative;
+    z-index:$zindexPopupInner;
+    margin:($heightHeader + 50) auto 0;
+    padding-top:28px;
+    width:$sizePopupL;
+    box-sizing:border-box;
+    background:$white;
+  }
+  &.size_m {
+    > .inner {
+      width:$sizePopupM;
+    }
+  }
+  .tit_modal {
+    margin:0 $marginContentPopup $marginContentPopup;
+    font-size:27px;
+    letter-spacing:$letterspacing2S;
+    line-height:36px;
+  }
+  .txt_modal {
+    font-size:$fontSizeXS;
+    >.emph {
+      color:$fontColor6;
+    }
+  }
+  .content_modal {
+    @include clearfix();
+    padding:25px $marginContentPopup;
+    line-height:$lineheight;
+    &.type_bg {
+      background:$contentColor;
+    }
+    &.type_full {
+      padding:0;
+    }
+    &.allow_scroll {
+      overflow-y:auto;
+      padding-right:0;
+      height:330px;
+    }
+    .txt_log_info {
+      margin-top:10px;
+      color:$fontColor5;
+      text-align:right;
+      .bar {
+        margin:4px 3px 0 4px;
+        @include bar(11px, $borderColor);
+      }
+    }
+  }
+  .content_modal_bottom {
+    margin-top:$marginContentPopup;
+    padding:0 $marginContentPopup;
+    height:102px - $marginContentPopup;
+    text-align:center;
+  }
+  .btn_close_modal {
+    position:absolute;
+    top:28px;
+    right:28px;
+    @include size(22px);
+    background:url($imageVqIco + "ico_close_modal.png") no-repeat;
+  }
+
+  .tab_category,
+  .desc_category {
+    overflow-x:hidden;
+    overflow-y:auto;
+    height:330px;
+  }
+  .tab_category {
+    float:left;
+    width:140px;
+  }
+  .desc_category {
+    float:left;
+  }
+  .list_item {
+    li {
+      overflow:hidden;
+      float:left;
+      position:relative;
+      margin:0 10px 10px 0;
+      @include size(194px, 80px);
+      &:hover {
+        input {
+          + label:after {
+            border-color:$primaryColorBorder;
+          }
+          &:not(:checked) {
+            + label:after {
+              border:1px solid $primaryColorBorder;
+            }
+          }
+        }
+      }
+    }
+    img {
+      vertical-align:top;
+      @include size(194px, 80px);
+      color:$contentColor;
+    }
+    input {
+      position:absolute;
+      opacity:0;
+      + label:after {
+        @include makePseudoIcon();
+        @include size(100%);
+        position:absolute;
+        top:0;
+        left:0;
+        border:1px solid transparent;
+        box-sizing:border-box;
+      }
+      &:checked {
+        + label:after {
+          border:3px solid $primaryColorBorder;
+          background:rgba($white, 0.5);
+        }
+      }
+    }
+    .seq {
+      position:absolute;
+      top:8px;
+      right:8px;
+      z-index:2;
+      padding-top:6px;
+      @include size(23px, 17px);
+      color:$white;
+      font-family:arial,sans-serif;
+      font-weight:bold;
+      letter-spacing:normal;
+      line-height:14px;
+      text-align:center;
+      border-radius:11px;
+      background:$primaryColor;
+    }
+    .adm_btn_s {
+      display:none;
+      position:absolute;
+      top:8px;
+      right:8px;
+      z-index:2;
+      border-radius:12px;
+    }
+    &.type_icon {
+      margin-left:7px;
+      li {
+        @include size(80px);
+        background:#474747;
+        img {
+          display:block;
+          margin:20px 0 0 20px;
+          @include size(42px);
+          color:#474747;
+        }
+      }
+    }
+  }
+  .tabpanel {
+    @include clearfix();
+    height:330px;
+  }
+}
+
+// 로고 설정 팝업
+.lpop_upload_logo {
+  .upload_logo {
+    .preview {
+      @include size(346px, 134px);
+      background:$secondaryColor;
+    }
+    .desc {
+      margin-left:21px;
+      line-height:23px;
+      .adm_btn_m {
+        width:$full;
+      }
+      .group_button {
+        .btn_del {
+          width:50px;
+          & + .btn_file {
+            width:214px;
+          }
+        }
+      }
+    }
+  }
+  .content_modal_bottom {
+    margin-top:5px;
+    .adm_btn_l {
+      width:140px;
+      font-weight:bold;
+    }
+  }
+}
+
+// 응시자 리스트
+.lpop_list {
+  .dashboard {
+    padding:0 $marginContentPopup;
+    .test_taker {
+      margin-top:14px;
+      padding:15px;
+      border:1px solid $borderColor;
+      color:$fontColor;
+      font-size:$fontSizeM;
+      text-align:center;
+      background:$secondaryColor;
+    }
+    .info {
+      display:inline-block;
+      padding:0 22px 0 26px;
+      border-left:1px solid $borderColor;
+      >dt,
+      >dd{
+        display:inline-block;
+        padding:0 4px;
+        .num {
+          color:$primaryColor;
+        }
+      }
+      &:first-of-type {
+        border-left:0;
+      }
+    }
+  }
+  .wrap_board_top {
+    margin:17px 0 12px;
+    padding:0 $marginContentPopup;
+    .adm_sel {
+      width:120px;
+    }
+    .search_area {
+      display:inline-block;
+      margin-left:4px;
+      .adm_typo{
+        float:left;
+        width:219px;
+      }
+      .adm_btn_m {
+        float:left;
+      }
+    }
+  }
+}
+// 종합결과다운
+.lpop_download {
+  >.inner{
+    padding:70px 0 20px;
+  }
+  .tit_modal {
+    margin-bottom:40px;
+    text-align:center;
+  }
+  .content_modal_bottom {
+    .adm_btn_l {
+      width:182px;
+      font-weight:bold;
+    }
+  }
+}

@@ -1,0 +1,180 @@
+#{$buttonSelector} {
+  display:inline-block;
+  box-sizing:border-box;
+  color:$fontColor2;
+  font-family:$fontFamily;
+  letter-spacing:$letterspacing;
+  text-align:center;
+  vertical-align:top;
+
+  // color
+  @include buttonColoring("primary", $primaryColor, $black, 80%);
+  @include buttonColoring("gray", $primaryColorGray, $black, 80%);
+  @include buttonColoring("yellow", $primaryColorYellow, $black, 80%);
+  @include prefix(transition, all 0.15s, ms webkit);
+  white-space:nowrap;
+  &.type_border {
+    border-color:$primaryColorBorder;
+    color:$primaryColor;
+    &:hover {
+      border-color:$primaryColor;
+      color:$white;
+      background-color:$primaryColor;
+      > [class^="ico_"] {
+        &:not(.reverse):before,
+        &.reverse:after {
+          background-position-x:100%;
+        }
+      }
+    }
+  }
+  &:disabled,
+  &:disabled:hover {
+    color:$white;
+    border-color:$disabledBgButton;
+    background-color:$disabledBgButton;
+    cursor:default;
+  }
+
+  // icon
+  > [class^="ico_"] {
+    display:inline-block;
+    vertical-align:top;
+    pointer-events:none;
+    &:not(.reverse):before,
+    &.reverse:after {
+      display:inline-block;
+      margin-bottom:1px;
+      vertical-align:middle;
+      background-image:url($imageIco + "ico_button.png");
+      background-repeat:no-repeat;
+      content:"";
+    }
+  }
+}
+
+.adm_btn {
+  // size
+  @each $class, $size in ("l", $sizeL), ("m", $sizeM), ("s", $sizeS) {
+    &#{"_" + $class} {
+      $buttonPadding:mapDeepGet($buttonStyle, #{"size_" + $class}, padding);
+      $buttonFont:mapDeepGet($buttonStyle, #{"size_" + $class}, font);
+      padding:0 $buttonPadding 5px;
+      height:$size;
+      border:1px solid $borderColorButton;
+      font-size:$buttonFont;
+      line-height:$size - 5;
+      background-color:$white;
+      &:hover {
+        background-color:$borderColorButton;
+      }
+      @include buttonIconVariation($class, $size);
+    }
+  }
+}
+
+.adm_btn_text {
+  font-size:$fontSizeM;
+  text-decoration:underline;
+}
+
+.btn_reset_data {
+  padding-bottom:3px;
+  height:$sizeM;
+  color:$white;
+  font-size:$fontSizeM;
+  letter-spacing:$letterspacing;
+  line-height:19px;
+  &:before {
+    @include makePseudoIcon();
+    @include size(16px);
+    margin:2px 3px 0 0;
+  background:url($imageIco + "ico_refresh.png") no-repeat 0 50%;
+    @at-root .darken & {
+      background-position-x:-16px;
+    }
+  }
+  &:disabled {
+    opacity:0.3;
+    cursor:default;
+  }
+}
+
+.btn_remove_item {
+  position:relative;
+  padding:0 10px 3px;
+  @include size(23px);
+  border-radius:12px;
+  color:$white;
+  font-size:0;
+  font-family:$fontFamily;
+  line-height:19px;
+  vertical-align:top;
+  white-space:nowrap;
+  background:rgba($black, 0.49) url($imageIco + "ico_remove_item.png") no-repeat 50% 50%;
+  &:hover {
+    width:auto;
+    font-size:$fontSizeXS;
+    background-image:none;
+  }
+}
+
+.adm_ico_add {
+  display:inline-block;
+  position:relative;
+  @include size(13px);
+  color:$fontColor5;
+  line-height:13px;
+  vertical-align:top;
+  border:1px solid rgba($fontColor5, 0.36);
+  border-radius:2px;
+  &:before,
+  &:after {
+    position:absolute;
+    background-color:currentColor;
+    opacity:0.7;
+    content:"";
+  }
+  &:before {
+    top:2px;
+    left:6px;
+    @include size(1px, 9px);
+  }
+  &:after {
+    top:6px;
+    left:2px;
+    @include size(9px, 1px);
+  }
+}
+
+
+// button grouping
+.group_button {
+  #{$buttonSelector},
+  button {
+    float:left;
+  }
+  &.align_r {
+    float:right;
+  }
+  &.no_margin {
+    #{$buttonSelector} {
+      margin-left:-1px;
+    }
+  }
+  &:not(.no_margin) {
+    @each $class in ("l"), ("m"), ("s") {
+      #{".adm_btn_" + $class} {
+        $buttonMargin:mapDeepGet($buttonStyle, #{"size_" + $class}, margin);
+        margin:0 $buttonMargin;
+      }
+    }
+    #{$buttonSelector}:first-child {
+      margin-left:0;
+    }
+    #{$buttonSelector}:last-child {
+      margin-right:0;
+    }
+  }
+  @include clearfix();
+}

@@ -1,0 +1,97 @@
+// lnb
+.adm_wrap_lnb {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  z-index:$zindexLnb;
+  width:$widthLnb;
+  @include fontDefault();
+
+}
+
+.adm_lnb {
+  overflow-x:hidden;
+  overflow-y:auto;
+  position:relative;
+  z-index:$zindexLnbInner;
+  width:$full;
+  height:100%;
+  box-shadow:$effectShadow;
+  box-sizing:border-box;
+  font-size:$fontSize2XS;
+  background:$white;
+  @include changeScroll($white, #ddd);
+
+  .company {
+    position:relative;
+    margin-bottom:25px;
+    padding:48px 0 40px;
+    border-bottom:1px solid $contentColor;
+    text-align:center;
+    .logo {
+      @include size(200px, 40px);
+      margin:0 auto 28px;
+      img {
+        max-width:$full;
+        max-height:$full;
+      }
+    }
+    .tit_company {
+      display:block;
+      padding:0 10px;
+      font-size:$fontSize2M;
+      font-weight:normal;
+      line-height:23px;
+    }
+    .btn_change {
+      position:absolute;
+      top:7px;
+      right:7px;
+    }
+  }
+
+  li.on {
+    > a {
+      color:$primaryColor;
+      font-weight:bold;
+    }
+  }
+  .lnbmenu {
+    > li {
+      padding:13px 11px;
+      line-height:23px;
+      > a {
+        display:inline-block;
+        vertical-align:top;
+        &:hover {
+          color:$primaryColor;
+        }
+        &:before {
+          @include makePseudoIcon();
+          @include size($lnbIconSize);
+          margin-right:11px;
+          background:url($imageVqIco + "ico_lnb_adm.png") no-repeat;
+          background-position-x:0;
+        }
+      }
+      &.on {
+        font-size:$fontSizeM;
+        > a:before {
+          background-position-x:$lnbIconSize * -1;
+        }
+      }
+    }
+    // lnb icon variation
+    @include lnbIconVariation($lnbIconAdm, "a");
+  }
+  .submenu {
+    margin-left:34px;
+    font-size:$fontSizeXS;
+    > li {
+      margin-top:5px;
+      line-height:$lineheight;
+    }
+  }
+
+}

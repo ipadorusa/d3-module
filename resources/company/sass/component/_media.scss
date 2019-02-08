@@ -1,0 +1,16 @@
+@include mediaQuery($tablet) {
+}
+@include mediaQuery($mobile) {
+}
+@include mediaPrint($print) {
+  body.adm_body {
+    background:none;
+  }
+  .adm_wrap_content {
+    margin-right:$marginContentRight;
+    margin-left:$marginContentRight;
+    .adm_content {
+      padding:0;
+    }
+  }
+}

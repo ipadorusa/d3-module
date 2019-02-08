@@ -1,0 +1,29 @@
+.popover_remove {
+  position:absolute;
+  padding:3px 10px 0;
+  height:21px;
+  border-radius:3px;
+  color:$white;
+  font-size:11px;
+  line-height:15px;
+  text-align:center;
+  white-space:nowrap;
+  background:rgba($black, 0.79);
+  &:after {
+    position:absolute;
+    bottom:-10px;
+    left:13px;
+    border:5px solid transparent;
+    border-top-color:rgba($black, 0.79);
+    content:"";
+  }
+  .ico_area {
+    &:before {
+      margin:2px 1px 0 0;
+      @include makePseudoIcon();
+      @include size(13px);
+      background:url($imageIco + "ico_lnb_set.png") 0 -13px;
+      background-size:26px auto;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.adm_pagination {
+  margin-top:30px;
+  font-size:$fontSize2XS;
+  text-align:center;
+  .page,
+  [class^=page_] {
+    display:inline-block;
+    height:$heightPagination;
+    line-height:$heightPagination - 1;
+    vertical-align:top;
+  }
+  .page {
+    margin-right:1px;
+    padding:0 8px;
+    min-width:18px;
+    color:$fontColor3;
+    text-align:center;
+    &.current {
+      color:$fontColor2;
+      font-weight:bold;
+      background:$secondaryColor;
+    }
+  }
+  [class^=page_] {
+    margin:0 2px;
+    width:24px;
+    background:url($imageVqIco + "ico_page.png") no-repeat;
+  }
+  .page_first {
+  }
+  .page_prev {
+    margin-right:7px;
+    background-position-x:#{$widthPagination * -1};
+  }
+  .page_next {
+    margin-left:7px;
+    background-position-x:#{$widthPagination * -2};
+  }
+  .page_last {
+    background-position-x:#{$widthPagination * -3};
+  }
+}

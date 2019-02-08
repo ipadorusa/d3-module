@@ -1,0 +1,122 @@
+.adm_tbl {
+  width:$full;
+  font-size:$fontSizeXS;
+  line-height:$lineheight;
+  table-layout:fixed;
+  word-break:break-all;
+}
+
+.adm_tbl_list {
+  border-top:1px solid $borderColor;
+  a {
+    color:$linkColor;
+  }
+  > thead {
+    th {
+      height:50px;
+      border-bottom:1px solid $borderColor;
+      font-size:$fontSize2XS;
+      background:$secondaryColor;
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        padding:16px 11px;
+        height:18px;
+        border-bottom:1px solid mix($borderColor, $white, 50);
+        text-align:center;
+        &.align_l {
+          text-align:left;
+        }
+        &.align_r {
+          text-align:right;
+        }
+        a:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+  }
+}
+.adm_tbl_form {
+  margin-top:40px;
+  .tit_tbl {
+    display:block;
+    padding:30px 0 20px;
+    border-top:1px solid #f0f1f5;
+    font-size:$fontSize2L;
+    font-weight:bold;
+    line-height:27px;
+    text-align:left;
+  }
+  &:first-of-type {
+    margin-top:0;
+    .tit_tbl {
+      padding-top:10px;
+      border-top:0;
+    }
+  }
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        height:32px;
+        line-height:32px;
+        vertical-align:top;
+      }
+      > th {
+        padding:6px 0 5px;
+        font-weight:normal;
+        text-align:left;
+        font-size:$fontSize2XS;
+      }
+      > td {
+        padding:6px 20px 6px 22px;
+      }
+    }
+  }
+  .adm_modal & {
+    border-top:1px solid mix($borderColor, $white, 50);
+  }
+}
+.result_table {
+  margin-top:11px;
+  width:$full;
+  font-size:$fontSizeXS;
+  line-height:$lineheight;
+  table-layout:fixed;
+  word-break:break-all;
+  thead th {
+    height:45px;
+    color:$fontColor8;
+    font-size:$fontSizeXSS;
+    font-weight:normal;
+    background:#f1f1f5;
+    border-top:1px solid #c0c0c0;
+  }
+  tfoot td {
+    color:$fontColor8;
+    font-size:$fontSizeXSS;
+    text-align:right;
+    em {
+      font-weight:bold;
+    }
+  }
+  tbody td {
+    padding:15px 0;
+    color:$fontColor3;
+    font-size:$fontSizeXS;
+    text-align:center;
+    border-bottom:1px solid #dbdbdb;
+    &:nth-child(1) {
+      color:$fontColor7;
+      font-size:$fontSize2XS;
+      letter-spacing:$letterspacing;
+      text-align:left;
+    }
+    &:nth-child(2) {
+      font-size:$fontSizeM;
+    }
+  }
+}

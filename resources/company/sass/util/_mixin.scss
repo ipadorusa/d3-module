@@ -1,0 +1,378 @@
+@function mapDeepGet($map, $keys...) {
+  @each $key in $keys {
+    $map:map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function calcViewportWidth($value, $viewport) {
+  $result:($value / $viewport) * 100 + "vw";
+  @return $result;
+}
+
+@mixin fontDefault() {
+  color:$fontColor;
+  font-family:$fontFamily;
+  letter-spacing:$letterspacing;
+}
+
+@mixin blind() {
+  overflow:hidden;
+  position:absolute;
+  width:1px;
+  height:1px;
+  clip:rect(1px, 1px, 1px, 1px);
+}
+
+@mixin clearfix() {
+  &:after {
+    display:table;
+    table-layout:fixed;
+    clear:both;
+    content:"";
+  }
+}
+
+@mixin ellipsis($width:$full) {
+  display:block;
+  overflow:hidden;
+  width:$width;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@mixin prefix($property, $value, $prefixes:()) {
+  @each $prefix in $prefixes {
+    #{"-" + $prefix + "-" + $property}:$value;
+  }
+  #{$property}:$value;
+}
+
+@mixin size($width, $height:$width) {
+  width:$width;
+  height:$height;
+}
+
+@mixin makePseudoIcon() {
+  display:inline-block;
+  vertical-align:top;
+  content:"";
+}
+
+@mixin bgModal($bg, $opacity) {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:$zindexPopup;
+  width:$full;
+  height:$full;
+  background:rgba($bg, $opacity);
+}
+
+@mixin gradientX($startColor, $endColor, $startPosition:0%, $endPosition:$full) {
+  background-image:linear-gradient(to right, $startColor $startPosition, $endColor $endPosition);
+}
+
+@mixin gradientY($startColor, $endColor, $startPosition:0%, $endPosition:$full) {
+  background-image:linear-gradient(to bottom, $startColor $startPosition, $endColor $endPosition);
+}
+
+@mixin changeScroll($scrollTrack, $scrollThumb) {
+  & {
+    scrollbar-3dLight-Color:$scrollTrack;
+    scrollbar-arrow-color:$scrollThumb;
+    scrollbar-base-color:$scrollTrack;
+    scrollbar-Face-Color:$scrollThumb;
+    scrollbar-Track-Color:$scrollTrack;
+    scrollbar-DarkShadow-Color:$scrollTrack;
+    scrollbar-Highlight-Color:$scrollTrack;
+    scrollbar-Shadow-Color:$scrollTrack;
+  }
+  &::-webkit-scrollbar {
+    width:6px;
+  }
+  &::-webkit-scrollbar-track {
+    background:$scrollTrack;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius:3px;
+    background:$scrollThumb;
+  }
+}
+
+@mixin lnbIconVariation($map, $target) {
+  @for $x from 1 through length($map) {
+    #{$target}.#{map-get($map, $x)}:before {
+      background-position-y:#{$lnbIconSize * -($x - 1)};
+    }
+  }
+}
+
+@mixin makeTab($style, $child) {
+  width:$full;
+  box-sizing:border-box;
+  @if $style == "flexible" {
+    display:table;
+    border-collapse:collapse;
+    table-layout:fixed;
+    #{$child} {
+      display:table-cell;
+    }
+  } @else {
+    @include clearfix();
+    #{$child} {
+      float:left;
+    }
+  }
+  #{$child} {
+    .tab {
+      display:block;
+      box-sizing:border-box;
+      letter-spacing:$letterspacing;
+    }
+  }
+}
+
+@mixin imageSprite($width, $height, $x:0, $y:0, $gap:0) {
+  $positionX:($width + $gap) * $x * -1;
+  $positionY:($height + $gap) * $y * -1;
+  background-position:$positionX $positionY;
+}
+
+// text input 상태 별 배리에이션
+@mixin inputVariation() {
+  border:1px solid $borderColor;
+  color:$fontColor;
+  font-size:$fontSizeXS;
+  font-family:$fontFamily;
+  letter-spacing:$letterspacing;
+  vertical-align:top;
+  @include prefix(transition, border-color 0.15s, ms webkit);
+  &:hover,
+  &:focus {
+    border-color:$black;
+  }
+  &:-ms-input-placeholder {
+    color:$placeholder;
+  }
+  &::-webkit-input-placeholder {
+    color:$placeholder;
+  }
+  &:disabled {
+    color:$fontColor4;
+    border-color:$borderColor;
+    background-color:$disabledBgInput;
+  }
+  &.invalid {
+    border-color:$primaryColorOrange;
+    background-color:$invalidBgInput;
+  }
+}
+
+// checkbox, radio button 상태 별 배리에이션
+@mixin checkboxVariation($size) {
+  &:checked {
+    + .lbl:before {
+      background-position-y:#{"-" + (($size + 10) * 1)};
+    }
+  }
+  &:disabled {
+    + .lbl:before {
+      background-position-y:#{"-" + (($size + 10) * 2)};
+    }
+  }
+  &.invalid {
+    + .lbl:before {
+      background-position-y:#{"-" + (($size + 10) * 3)};
+    }
+  }
+}
+
+// 버튼 색상 배리에이션
+@mixin buttonColoring($buttonClass, $buttonBgColor, $mixColor, $mixAmount) {
+  $border:$buttonBgColor;
+
+  &.type_#{$buttonClass} {
+    border:1px solid $border;
+    color:$white;
+    background-color:$buttonBgColor;
+    &:hover {
+      border-color:mix($border, $mixColor, $mixAmount);
+      background-color:mix($buttonBgColor, $mixColor, $mixAmount);
+    }
+  }
+}
+
+// 버튼 아이콘 사이즈 별 배리에이션
+@mixin buttonIconVariation($class, $size) {
+  $iconSize:mapDeepGet($buttonStyle, #{"size_" + $class}, icon_size);
+  $iconGap:mapDeepGet($buttonStyle, #{"size_" + $class}, icon_gap);
+
+  > [class^="ico_"] {
+    &:not(.reverse):before,
+    &.reverse:after {
+      @include size($iconSize);
+      background-size:#{$iconSize * 2} auto;
+    }
+    &:not(.reverse):before {
+      margin-right:$iconGap;
+    }
+    &.reverse:after {
+      margin-left:$iconGap;
+    }
+  }
+  > .ico {
+    @for $x from 1 through length($buttonIconName) {
+      $currentIcon:map-get($buttonIconName, $x);
+
+      &#{"_" + $currentIcon} {
+        &:before,
+        &:after {
+          background-position-y:#{$iconSize * -($x - 1)};
+        }
+      }
+    }
+  }
+  &[class*="type_"]:not(.type_border) {
+    > [class^="ico_"] {
+      &:before,
+      &:after {
+        background-position-x:-$iconSize;
+      }
+    }
+  }
+}
+
+@mixin bar($size, $color) {
+  display:inline-block;
+  overflow:hidden;
+  @include size(1px, $size);
+  font-size:0;
+  vertical-align:top;
+  background:$color;
+}
+
+@mixin btnAddStyle() {
+  border:1px dashed #dadada;
+  color:$fontColor5;
+  font-size:$fontSizeM;
+  font-family:$fontFamily;
+  letter-spacing:-1px;
+  > .text {
+    line-height:19px;
+  }
+  .adm_ico_add {
+    margin:3px 0 0 6px;
+    vertical-align:top;
+  }
+}
+
+@mixin mediaQuery($media) {
+  @if $media == $mobile {
+    @media all and (max-width:$sizeMobile) {
+      @content;
+    }
+  }
+  @else if $media == $tablet {
+    @media all and (min-width:$sizeMobile+1) and (max-width:$sizeTablet) {
+      @content;
+    }
+  }
+  @else if $media == $pc {
+    @media all and (max-width:$sizePcMin) {
+      @content;
+    }
+  }
+  @else {
+    @media all and (max-width:$media) {
+      @content;
+    }
+  }
+}
+
+@mixin mediaPrint($media) {
+  @if $media == $print {
+    @media print {
+      @content;
+    }
+  }
+}
+
+// 채용 검사 화살표
+@mixin beforeArrow($deg) {
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:'';
+  position: absolute;
+  left:-14px;
+  top:5px;
+  width:28px;
+  height:28px;
+  background:#f6f7fd;
+  border-top:solid 1px currentColor;
+  border-right:solid 1px currentColor;
+  z-index:10;
+}
+@mixin afterArrow($deg) {
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:'';
+  position: absolute;
+  right:-14px;
+  top:5px;
+  width:28px;
+  height:28px;
+  background:#fff;
+  border-top:solid 1px currentColor;
+  border-right:solid 1px currentColor;
+  z-index:10;
+}
+@mixin nonAfterArrow($deg) {
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:'';
+  position: absolute;
+  right:-14px;
+  top:5px;
+  width:28px;
+  height:28px;
+  background:#f6f7fd;
+  border-top:solid 1px #cfd1d7;
+  border-right:solid 1px #cfd1d7;
+  z-index:10;
+}
+@mixin nonBeforeArrow($deg) {
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:'';
+  position: absolute;
+  left:-16px;
+  top:5px;
+  width:28px;
+  height:28px;
+  background:#f6f7fd;
+  border-top:solid 1px #cfd1d7;
+  border-right:solid 1px #cfd1d7;
+  z-index:1;
+}
+@mixin headingH3Style() {
+  color:$fontColor7;
+  font-size:$fontSizeM;
+  font-weight:bold;
+  letter-spacing:$letterspacing;
+}
+@mixin resultSubtitle($margin-bottom){
+  margin-bottom:$margin-bottom;
+  color:$fontColor7;
+  font-size:$fontSizeM;
+  letter-spacing:$letterspacing;
+}
+@mixin squareNumber($olNumber) {
+  display:inline-block;
+  margin-right:9px;
+  color:$fontColor7;
+  font-size:$fontSizeXSS;
+  font-weight:bold;
+  border:1px solid #dbdbdb;
+  width:17px;
+  height:17px;
+  text-align:center;
+  line-height:15px;
+  content:$olNumber;
+}

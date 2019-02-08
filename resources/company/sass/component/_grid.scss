@@ -1,0 +1,55 @@
+.adm_grid {
+  width:$full;
+  box-sizing:border-box;
+  @include clearfix();
+  // row
+  .row {
+    @include clearfix();
+    margin-top:10px;
+    &:first-child {
+      margin-top:0;
+    }
+  }
+  // column
+  .col,
+  [class*="col_"] {
+    float:left;
+    padding:0 $marginGrid;
+    box-sizing:border-box;
+    &:first-child {
+      padding-left:0;
+    }
+    &:last-child {
+      padding-right:0;
+    }
+    &.align_c {
+      text-align:center;
+    }
+    &.align_r {
+      text-align:right;
+    }
+  }
+  &.no_padding {
+    .col,
+    [class*="col_"] {
+      padding:0;
+    }
+  }
+  @for $x from 1 through 12 {
+    #{".col_" + $x} {
+      width:($x / 12) * 100%;
+    }
+  }
+}
+
+// inside panel
+%insidePanelGrid {
+  .adm_grid {
+    .row {
+      margin-top:4px;
+      &:first-child {
+        margin-top:0;
+      }
+    }
+  }
+}

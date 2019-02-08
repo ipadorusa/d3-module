@@ -1,0 +1,180 @@
+// theme variation (step 2 구현 범위, 테마 별 색상 코드 임의 지정)
+@for $x from 1 through length($themesBack) {
+  $themeTypeBack:nth(map-keys($themesBack), $x);
+  $themeBody:mapDeepGet($themesBack, $themeTypeBack, body);
+  $themePrimary:mapDeepGet($themesBack, $themeTypeBack, primary);
+  $themeSecondary:mapDeepGet($themesBack, $themeTypeBack, secondary);
+  $themePrimaryBorder:mapDeepGet($themesBack, $themeTypeBack, primaryBorder);
+
+  .adm_theme_#{$themeTypeBack} {
+    &.adm_body {
+      background:$themeBody;
+    }
+    // GNB
+    .adm_gnb > li {
+      &:hover > a {
+        border-color:rgba($themePrimary, 0.7);
+      }
+      &.on > a {
+        border-color:$themePrimary;
+        color:$themePrimary;
+      }
+    }
+    // LNB
+    .adm_lnb {
+      li.on > a {
+        color:$themePrimary;
+      }
+      .lnbmenu > li > a:hover {
+        color:$themePrimary;
+      }
+    }
+    &.folding .adm_lnb {
+      .lnbmenu > li {
+        > a:hover {
+          background:rgba($themePrimary, 0.4);
+        }
+        &.on {
+          background:$themePrimary;
+        }
+      }
+    }
+    // button
+    #{$buttonSelector} {
+      @include buttonColoring("primary", $themePrimary, $white, 80%);
+      &.type_border {
+        border-color:$themePrimaryBorder;
+        color:$themePrimary;
+        &:hover {
+          color:$white;
+          background-color:$themePrimary;
+        }
+      }
+    }
+    // tab
+    .adm_tab_vertical > li.on .tab {
+      background:$themePrimary;
+    }
+    .adm_tab_bar {
+      > li {
+        &:hover {
+          .tab {
+            color:$themePrimary;
+          }
+        }
+        &.on {
+          .tab {
+            border-bottom-color:$themePrimary;
+            color:$themePrimary;
+            .adm_ico_add {
+              border-color:rgba($themePrimary, 0.36);
+              &:before,
+              &:after {
+                background-color:$themePrimary;
+              }
+            }
+          }
+        }
+      }
+    }
+    // table
+    .adm_tbl th {
+      background:$themeSecondary;
+    }
+    // pagination
+    .adm_pagination .page.current {
+      background:$themeSecondary;
+    }
+    // form
+    .adm_switch input[type=checkbox]:checked + .lbl {
+      border-color:$themePrimary;
+      background:$themePrimary;
+    }
+    // modal
+    .adm_modal .content_modal.type_bg {
+      background:$themeBody;
+    }
+    // badge
+    .adm_badge {
+      border-color:$themePrimaryBorder;
+      color:$themePrimary;
+    }
+    // calendar
+    .adm_calendar {
+      li.selected > button {
+        background:$themePrimary;
+      }
+      .list_calendar_year li.selected > button {
+        outline:1px solid $themePrimary;
+      }
+    }
+    .vdp-datepicker__calendar {
+      .cell {
+        &.selected,
+        &.selected:hover {
+          background:$themePrimary !important;
+        }
+        &:not(.blank):not(.disabled).day,
+        &:not(.blank):not(.disabled).month,
+        &:not(.blank):not(.disabled).year {
+          &:hover {
+            background:rgba($themePrimary, 0.7);
+          }
+        }
+      }
+    }
+    // homepage setting
+    .adm_lnb_setting .submenu_type li.on .btn_option {
+      color:$themePrimaryBorder;
+    }
+    .adm_modal {
+      .list_item {
+        li:hover input + label:after {
+          border-color:$themePrimaryBorder;
+        }
+        input:checked + label:after {
+          border-color:$themePrimaryBorder;
+        }
+        .seq {
+          background-color:$themePrimary;
+        }
+      }
+    }
+    .type_A .editor_main_headcopy .direct_editor .panel_editor .recommend_text:hover,
+    .panel_editor .list_layout input[type="radio"] + label:after {
+      border-color:$themePrimary;
+    }
+  }
+}
+
+// front theme variation
+@for $x from 1 through length($themesFront) {
+  $themeTypeFront:nth(map-keys($themesFront), $x);
+  $themePrimary:mapDeepGet($themesFront, $themeTypeFront, primary);
+  $themeSecondary:mapDeepGet($themesFront, $themeTypeFront, secondary);
+  $themeGradientL:mapDeepGet($themesFront, $themeTypeFront, gradient_l);
+  $themeGradientR:mapDeepGet($themesFront, $themeTypeFront, gradient_r);
+  .theme#{$x} {
+    .editor_main_headcopy .content_editor.editing .input_editor {
+      background:$themeSecondary;
+    }
+    .editor_main_page .direct_editor .menu_name {
+        color:$themePrimary;
+      }
+    .panel_editor .recommend_text {
+        background:$themeSecondary;
+      }
+    .editor_welfare_detail .item_welfare:before {
+      @include gradientX($themeGradientL, $themeGradientR);
+    }
+  }
+}
+@for $x from 1 through length($themesTypo) {
+  $typo:map-get($themesTypo, $x);
+  .typo#{$x} {
+    .input_editor,
+    .panel_editor .recommend_text {
+      font-family:$typo;
+    }
+  }
+}

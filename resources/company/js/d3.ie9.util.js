@@ -14,5 +14,4 @@ module.exports = function() {
 			d3_style_setProperty.call(this, name, value + "", priority);
 		}
 	};
-};
-
+}

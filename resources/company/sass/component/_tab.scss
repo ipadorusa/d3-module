@@ -1,0 +1,120 @@
+.adm_tab {
+  @include makeTab(flexible, "li");
+  margin-bottom:20px;
+  > li {
+    border:1px solid $borderColorButton;
+    .tab {
+      padding-bottom:3px;
+      @include size($full, 39px);
+      box-sizing:border-box;
+      color:$fontColor3;
+      font-size:$fontSizeL;
+      line-height:37px;
+      text-align:center;
+      &:hover {
+        text-decoration:underline;
+      }
+    }
+    &.on {
+      .tab {
+        color:$fontColor;
+        font-weight:bold;
+        outline:1px solid #2e3336;
+        background:$white;
+      }
+    }
+  }
+  &.type_fixed {
+    width:auto;
+    > li {
+      width:210px;
+    }
+  }
+}
+
+.adm_tab_bar {
+  @include makeTab(floating, "li");
+  height:50px;
+  border-bottom:1px solid #d2d2d2;
+  > li {
+    padding-right:1px;
+    .tab {
+      padding:0 50px;
+      height:50px;
+      border-bottom:2px solid transparent;
+      color:$fontColor5;
+      font-size:$fontSizeXL;
+      line-height:48px;
+      &:hover {
+        color:$primaryColor;
+      }
+      .adm_ico_add {
+        margin:18px 0 0 5px;
+      }
+    }
+    &.on {
+      .tab {
+        border-bottom-color:$primaryColor;
+        color:$primaryColor;
+        font-size:$fontSizeXL + 2;
+        font-weight:bold;
+        line-height:46px;
+        .adm_ico_add {
+          margin-top:17px;
+          border-color:rgba($primaryColor, 0.36);
+          &:before,
+          &:after {
+            background-color:$primaryColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.adm_tab_vertical {
+  width:$widthTabVertical;
+  > li {
+    padding-bottom:1px;
+    .tab {
+      display:block;
+      @include size($full, 40px);
+      color:$fontColor5;
+      font-size:$fontSizeM;
+      line-height:38px;
+      text-align:center;
+      background:$white;
+    }
+    &.on {
+      .tab {
+        color:$white;
+        background:$primaryColor;
+      }
+    }
+  }
+}
+
+%insidePanelTab {
+  .wrap_tab {
+    margin:0 #{"-" + $marginPanel};
+    > ul {
+      @include makeTab(flexible, "li");
+      border-top:1px solid mix($primaryColorGray, $black, 55%);
+    }
+    .tab {
+      padding-bottom:5px;
+      @include size($full, 36px);
+      color:rgba($white, 0.6);
+      text-align:center;
+      background:mix($primaryColorGray, $black, 55%);
+    }
+    li.on {
+      .tab {
+        color:$white;
+        font-size:$fontSizeM;
+        font-weight:bold;
+        background:$primaryColorGray;
+      }
+    }
+  }
+}
