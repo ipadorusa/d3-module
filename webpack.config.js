@@ -29,19 +29,32 @@ module.exports = {
 			chunkFilename: "admin.[hash].css"
 		})
 	],
+	resolve: {
+    modules: ['node_modules'],
+    extensions: ['.js', '.json', '.jsx', '.css', '.scss'],
+  },
 	devtool: 'source-map',
-	entry: ['./company/sass/admin.scss'],
+	entry: ['./resources/company/js/ui.js','./resources/company/sass/admin.scss'],
 	output: {
-		path: path.resolve('../public/css/company/')
+		filename: 'ui.js',
+		path: path.resolve(__dirname, 'dist')
+		
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(sa|sc|c)ss$/,
+				exclude: [/node_modules/],
 				use: [
 					MiniCssExtractPlugin.loader,
 					{ loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
 					{ loader: 'sass-loader', options: { sourceMap: true } },
+				]
+			},
+			{
+				test: /\.(png|svg|jpg|gif)$/,
+				use: [
+					'file-loader'
 				]
 			}
 		]
