@@ -590,9 +590,12 @@
       .area_detail {
         @include size(357px,227px);
         float:right;
+        text-align:center;
       }
     }
   }
-
+  .ggg {
+    text-align: center;
+  }
 }
 

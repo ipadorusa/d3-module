@@ -4111,7 +4111,10 @@ input[type=text]::-ms-clear {
       .fit_content .fit_top .area_detail {
         width: 357px;
         height: 227px;
-        float: right; } }
+        float: right;
+        text-align: center; }
+  .ggg {
+    text-align: center; } }
 
 
 /*# sourceMappingURL=admin.css.map*/

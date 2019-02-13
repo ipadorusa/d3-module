@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./resources/company/js/ui.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -26579,13 +26579,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = function() {
-	const d3_style_prototype   = this.CSSStyleDeclaration.prototype;
-	const d3_style_setProperty = d3_style_prototype.setProperty;
+	var d3_style_prototype   = this.CSSStyleDeclaration.prototype;
+	var d3_style_setProperty = d3_style_prototype.setProperty;
 	d3_style_prototype.setProperty = function(name, value, priority) {
 		try {
 			d3_style_setProperty.call(this, name, value + "", priority);
 		} catch(exception) {
-			console.warn("d3_style_prototype.setProperty - name: ", name, ", value: ", value, ", priority: ", priority, ", exception: ", exception);
 			switch(name) {
 				case    'left':  name = 'start';  break;
 				case    'right': name = 'end';    break;
@@ -26611,6 +26610,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
 /* harmony import */ var _d3_ie9_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./d3.ie9.util */ "./resources/company/js/d3.ie9.util.js");
 /* harmony import */ var _d3_ie9_util__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_d3_ie9_util__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _sass_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sass/admin */ "./resources/company/sass/admin.scss");
+/* harmony import */ var _sass_admin__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_sass_admin__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -26626,19 +26627,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!******************************************************************************!*\
-  !*** multi ./resources/company/js/ui.js ./resources/company/sass/admin.scss ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! ./resources/company/js/ui.js */"./resources/company/js/ui.js");
-module.exports = __webpack_require__(/*! ./resources/company/sass/admin.scss */"./resources/company/sass/admin.scss");
-
 
 /***/ })
 
