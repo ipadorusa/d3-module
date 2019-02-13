@@ -9,7 +9,6 @@ const targetPath = '../public/css/';
 
 
 module.exports = {
-	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 	optimization: {
 		minimizer: [
 			new UglifyJsPlugin({
@@ -25,8 +24,8 @@ module.exports = {
 			root: __dirname + '/' + targetPath
 		}),
 		new MiniCssExtractPlugin({
-			filename: "admin.css",
-			chunkFilename: "admin.[hash].css"
+			filename: "../css/admin.css",
+			chunkFilename: "admin.[chunkhash:7].css"
 		})
 	],
 	resolve: {
@@ -34,10 +33,10 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx', '.css', '.scss'],
   },
 	devtool: 'source-map',
-	entry: ['./resources/company/js/ui.js','./resources/company/sass/admin.scss'],
+	entry: './resources/company/js/ui.js',
 	output: {
 		filename: 'ui.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'public/js/company/js/')
 		
 	},
 	module: {
