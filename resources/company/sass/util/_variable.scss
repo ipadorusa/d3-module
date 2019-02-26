@@ -39,18 +39,20 @@ $lineheight:17px;
 // color
 $black:#000;
 $white:#fff;
+$lightGray:#f0f1f5;
 
 $primaryColor:#5a82f0;
-$primaryColorGray:#41464c;
+$primaryColorGray:#666;
 $primaryColorOrange:#ff665c;
-$primaryColorYellow:#f09c12;
+//$primaryColorYellow:#f09c12;
 $primaryColorBorder:#4876ef;
 $secondaryColor:#fbfcff;
 
 $borderColor:#e1e3eb;
+$borderColor2:#e4e5ea;
 $borderColorButton:#cfd1d7;
-$borderColorTable:#4b4b4b;
-$borderColorEditor:#ff9f00;
+//$borderColorTable:#4b4b4b;
+//$borderColorEditor:#ff9f00;
 
 $invalidBgInput:#fffbe5;
 $disabledColor:#c2c2c2;
@@ -65,7 +67,7 @@ $fitColorA:#0f72f8;
 $fitColorB:#00a05d;
 $fitColorC:#ff4e06;
 $fitColorD:#f53b57;
-$fitColorNone:#000;
+$fitColorNonePass:#000;
 
 // setting homepage
 $primaryColorSetting:#1d1d1d;
@@ -91,12 +93,13 @@ $sizeTablet:768px;
 
 $sizePopupL:802px;
 $sizePopupM:527px;
+$sizePopupS:384px;
 
-$heightHeader:70px;
+//$heightHeader:70px;
 $widthLnb:210px;
 //$widthLnbFolding:50px;
-$widthPanel:210px;
-$heightPageTitle:45px;
+//$widthPanel:210px;
+$heightPageTitle:107px;
 $widthContentMin:1260px;
 
 $widthPagination:24px;
@@ -119,16 +122,16 @@ $marginCalendar:10px;
 // z-index
 $zindexPopupInner:55;
 $zindexPopup:50;
-$zindexHeader:45;
-$zindexLnbInner:40;
+//$zindexHeader:45;
+//$zindexLnbInner:40;
 $zindexLnb:35;
 $zindexCalendar:35;
-$zindexEditorActive:30;
-$zindexEditorDim:25;
-$zindexEditor:20;
+//$zindexEditorActive:30;
+//$zindexEditorDim:25;
+//$zindexEditor:20;
 
 // gnb icon
-$gnbIconSize:24px;
+//$gnbIconSize:24px;
 
 // lnb icon
 $lnbIconSize:24px;
@@ -243,3 +246,13 @@ $pc:pc;
 $tablet:tablet;
 $mobile:mobile;
 $print:print;
+
+
+// bgGradient
+$rank_aplus:aplus;
+$rank_a:a;
+$rank_b:b;
+$rank_c:c;
+$rank_d:d;
+$rank_nonpass:nonpass;
+

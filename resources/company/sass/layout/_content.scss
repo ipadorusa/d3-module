@@ -15,6 +15,14 @@
   .adm_body & {
     @include fontDefault();
   }
+  .adm_content {
+    $marginContentTop:$heightPageTitle;
+    position:relative;
+    min-height:calc(100vh - #{$marginContentTop} - 20px);
+    box-sizing:border-box;
+    font-size:$fontSizeM;
+    background:$white;
+  }
   .page_header {
     margin:40px 0 22px 0;
     .tit_page {
@@ -22,7 +30,7 @@
       font-weight:normal;
       letter-spacing:$letterspacing * 3;
       line-height:45px;
-      .tit_page_sub {
+      .txt_page_sub {
         display:inline-block;
         color:$fontColor2;
         font-size:$fontSizeM;
@@ -49,52 +57,6 @@
         text-decoration:underline;
       }
     }
-    .create_step {
-      margin-top:40px;
-      @include clearfix();
-      li {
-        position: relative;
-        float:left;
-        @include size(330px, 41px);
-        line-height:41px;
-        padding-left:30px;
-        padding-right:30px;
-        border:1px solid $borderColorButton;
-        box-sizing:border-box;
-        span{
-          margin-right:10px;
-        }
-        &.on {
-          border-color:#2e3336;
-          background:#fff;
-          font-weight:bold;
-        }
-        &:nth-child(1) {
-          padding-left:24px;
-        }
-        &:nth-child(1).on:after {
-          @include afterArrow(45deg);
-        }
-        &:nth-child(2):before {
-          @include nonBeforeArrow(45deg);
-        }
-        &:nth-child(2):after {
-          @include nonAfterArrow(45deg);
-        }
-        &:nth-child(2).on:before {
-          @include beforeArrow(45deg);
-        }
-        &:nth-child(2).on:after {
-          @include afterArrow(45deg);
-        }
-        &:nth-child(3) {
-          width:332px;
-        }
-        &:nth-child(3).on:before {
-          @include beforeArrow(45deg);
-        }
-      }
-    }
   }
   .tit_section {
     margin:50px 0 10px;
@@ -103,31 +65,41 @@
       margin-top:0;
     }
   }
-  .adm_content {
-    $marginContentTop:$heightPageTitle;
-    position:relative;
-    padding:20px;
-    min-height:calc(100vh - #{$marginContentTop} - 20px);
-    box-sizing:border-box;
-    font-size:$fontSizeM;
-    background:$white;
+  .txt_sub {
+    font-size:$fontSizeXS;
+    line-height:$lineheight;
+    >.emph {
+      color:$fontColor6;
+    }
   }
 
   /* lnb folding
   .folding & {
     margin-left:$widthLnbFolding + $marginContentLeft;
-  }
-
-  /* no lnb
-  .no_lnb & {
-    margin-left:$marginContentRight;
-    min-width:$widthContentMin - ($marginContentRight * 2);
   }*/
+
+  // no lnb
+  .no_lnb & {
+    margin:0;
+    min-width:$widthContentMin - ($marginContentRight * 2);
+    .adm_content {
+      min-height:calc(100vh - 92px);
+      background:none;
+    }
+    .adm_footer {
+      padding:38px 0;
+      color:$fontColor4;
+      font-size:12px;
+      line-height:16px;
+      text-align:center;
+    }
+  }
 }
+
 .wrap_board_top {
   @include clearfix();
-  margin-bottom:9px;
-  height:$sizeM;
+  margin-bottom:12px;
+  /*
   .cnt_article,
   .list_aritcle {
     margin-top:$sizeM - 17;
@@ -140,9 +112,9 @@
       color:$primaryColorOrange;
       font-size:$fontSizeL;
     }
-  }
+  }*/
 }
-
+/*
 .wrap_unit {
   .unit {
     display:inline-block;
@@ -155,9 +127,9 @@
       color:$fontColor4;
     }
   }
-}
+}*/
 
-/* homepage setting content */
+/* homepage setting content
 .adm_wrap_content {
   .adm_body_setting & {
     margin:$heightHeader 0 0 0;
@@ -180,17 +152,18 @@
       margin-top:0;
     }
   }
-}
+}*/
 
-/* list top filter */
+// 응시자 관리
 .area_filter {
   margin-top:20px;
   padding:38px 31px;
-  background:$primaryColorGray;
+  background:#41464c;
   .row {
     @include clearfix();
     margin-top:30px;
     margin-right:28px;
+    min-width:968px;
     &:first-child {
       margin-top:0;
     }
@@ -223,6 +196,7 @@
   }
 }
 .list_recruit {
+  padding:20px;
   .row {
     .btn_down {
       margin-bottom:10px;
@@ -230,20 +204,76 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 로그인
+.adm_wrap_login {
+  text-align:center;
+  background-image:url($imageVqBg + "bg_login_left.png"), url($imageVqBg + "bg_login_right.png"), url($imageVqBg + "bg_login_top_right.png");
+  background-position:0 100%, 100% 100%, 95% 0;
+  background-repeat:no-repeat;
+  .adm_content {
+    .logo_saramin {
+      position:absolute;
+      top:30px;
+      left:40px;
+    }
+    .tit_fit {
+      padding-top:48px;
+      font-size:$fontSize2XL;
+      line-height:59px;
+      letter-spacing:4px;
+    }
+    .txt_fit {
+      display:block;
+      padding-top:150px;
+      color:$fontColor9;
+      font-size:$fontSizeM;
+      line-height:20px;
+      letter-spacing:0;
+      >strong {
+        display:block;
+        padding-top:9px;
+        font-size:$fontSizeXL;
+        line-height:33px;
+      }
+    }
+    .wrap_login {
+      overflow:hidden;
+      margin:50px auto 0;
+      width:378px;
+      .login_input {
+        margin-top:6px;
+        border:1px solid $borderColor;
+        .inp_txt {
+          padding:0 18px;
+          @include size($full, 48px);
+          border:0;
+          box-sizing:border-box;
+          font-size:$fontSize2XS;
+          line-height:18px;
+          background:$white
+        }
+      }
+      .adm_btn_login {
+        margin-top:20px;
+        @include size($full, 60px);
+        font-size:$fontSizeL+1;
+        font-weight:bold;
+      }
+    }
+    .info_login {
+      padding:28px 0 110px;
+      .txt_info {
+        padding-top:8px;
+        color:$fontColor3;
+        font-size:$fontSizeXS;
+        line-height:$lineheight;
+        .adm_btn_text {
+          color:$primaryColor;
+        }
+      }
+    }
+  }
+}
 
 // 로고 이미지 변경
 .upload_logo {
@@ -254,6 +284,7 @@
     position:relative;
     @include size(230px, 148px);
     border:1px solid #dadada;
+    box-sizing:border-box;
     .thumb {
       position:absolute;
       top:0;
@@ -270,10 +301,10 @@
     margin-left:28px;
     width:272px;
     .info_file {
-      margin-top:10px;
+      margin-top:20px;
       color:$fontColor4;
       font-size:$fontSizeXS;
-      line-height:21px;
+      line-height:22px;
       .file_name {
         @include ellipsis();
         color:$fontColor;
@@ -291,14 +322,19 @@
     }
   }
 }
+
 // 내 기업 관리
 .my_company {
+  padding:20px;
   .adm_tbl_form {
     .adm_typo {
       width:230px;
       &.inp_mail {
         width:157px;
       }
+    }
+    .txt_message {
+      padding-top:11px;
     }
     .btn_password {
       margin:-10px 0 0 24px;
@@ -315,9 +351,260 @@
       right:8px;
     }
   }
-  >.type_primary {
-    display:block;
-    margin:94px auto 0;
-    width:182px;
+  .adm_wrap_btns {
+    .adm_btn_l {
+      width:182px;
+      font-weight:bold;
+    }
+  }
+}
+
+// 채용 검사 생성
+.create_step {
+  padding:20px 0;
+  background:$contentColor;
+  @include clearfix();
+  li {
+    float:left;
+    position: relative;
+    padding-left:30px;
+    padding-right:30px;
+    @include size(330px, 41px);
+    border:1px solid $borderColorButton;
+    box-sizing:border-box;
+    color:$fontColor2;
+    line-height:41px;
+    .step {
+      margin-right:10px;
+      letter-spacing:0;
+    }
+    &.on {
+      border-color:#2e3336;
+      background:#fff;
+      font-weight:bold;
+    }
+    &:before {
+      @include nonBeforeArrow(45deg);
+    }
+    &:after {
+      @include nonAfterArrow(45deg);
+    }
+    &.on:before {
+      @include beforeArrow(45deg);
+    }
+    &.on:after {
+      @include afterArrow(45deg);
+    }
+    &:first-child {
+      padding-left:24px;
+    }
+    &:first-child:before {
+      display:none;
+    }
+    &:first-child.on:before {
+      display:none;
+    }
+    &:first-child.on:after {
+      @include afterArrow(45deg);
+    }
+    &:last-child {
+      width:332px;
+    }
+    &:last-child.on:before {
+      @include beforeArrow(45deg);
+    }
+    &:last-child:after {
+      display:none;
+    }
+    &:last-child.on:after {
+      display:none;
+    }
+
+    /*&:nth-child(1).on:after {
+      @include afterArrow(45deg);
+    }
+    &:nth-child(2):before {
+      @include nonBeforeArrow(45deg);
+    }
+    &:nth-child(2):after {
+      @include nonAfterArrow(45deg);
+    }
+    &:nth-child(2).on:before {
+      @include beforeArrow(45deg);
+    }
+    &:nth-child(2).on:after {
+      @include afterArrow(45deg);
+    }
+    &:nth-child(3) {
+      width:332px;
+    }
+    &:nth-child(3).on:before {
+      @include beforeArrow(45deg);
+    }*/
+  }
+}
+.create_form {
+  padding:20px;
+  .adm_tbl_form {
+    padding:20px;
+    .adm_typo {
+      width:230px;
+    }
+    .adm_chk {
+      min-width:97px;
+    }
+    .txt_message {
+      display:inline-block;
+      padding-left:10px;
+    }
+    .period {
+      .type_calendar {
+        width:130px;
+      }
+      .adm_sel {
+        margin:0 2px;
+        width:64px;
+      }
+      .txt_dash {
+        display:inline-block;
+        padding:0 7px 0 5px;
+      }
+    }
+    .part {
+      .adm_sel {
+        margin-right:4px;
+        width:120px;
+      }
+      .adm_typo {
+        width:430px;
+      }
+    }
+  }
+  .regist_file {
+    .group_button {
+      padding-bottom:10px;
+      .adm_btn_l {
+        width:140px;
+      }
+    }
+    .txt_sub {
+      padding-top:6px;
+    }
+  }
+  .regist_list {
+    margin-left:-20px;
+    padding-top:50px;
+    width:822px;
+    .wrap_board_top {
+      padding-left:20px;
+    }
+    .wrap_board_regist {
+      position:relative;
+      margin-top:12px;
+      border-top:1px solid $borderColor2;
+      .scroll {
+        overflow:hidden;
+        overflow-y:auto;
+        width:839px;
+        max-height:569px;
+      }
+      &:after {
+        position:absolute;
+        left:0;
+        bottom:0;
+        @include size($full, 1px);
+        border-top:1px solid $borderColor2;
+        background:$white;
+        content:"";
+      }
+    }
+    .btn_line_add {
+      margin:24px 0 0 20px;
+      @include size(802px, 32px);
+      border:1px solid $borderColor;
+      font-size:12px;
+      background:$lightGray;
+    }
+  }
+  .step_complete {
+    display:table;
+    @include size($full, 508px);
+    border-bottom:1px solid $lightGray;
+    text-align:center;
+    >.inner {
+      display:table-cell;
+      vertical-align:middle;
+    }
+    .txt_complete {
+      display:block;
+      font-size:22px;
+      line-height:29px;
+      >span {
+        display:block;
+        padding-bottom:4px;
+        font-size:$fontSize2M;
+        font-weight:normal;
+      }
+      >.ico_complete {
+        display:block;
+        position:relative;
+        margin:0 auto 23px;
+        @include size(50px);
+        border:3px solid $primaryColor;
+        border-radius:50px;
+        box-sizing:border-box;
+        &:before, &:after {
+          position:absolute;
+          width:3px;
+          border-radius:10px;
+          background:$primaryColor;
+          content:"";
+        }
+        &:before {
+          top:20px;
+          left:13px;
+          height:14px;
+          @include prefix(transform, rotate(-45deg), webkit ms);
+        }
+        &:after {
+          top:11px;
+          left:25px;
+          height:25px;
+          @include prefix(transform, rotate(45deg), webkit ms);
+        }
+      }
+    }
+    .wrap_agree {
+      padding:24px 0 27px;
+      .desc_terms {
+        margin:0 auto;
+        padding:15px 21px;
+        @include size(500px, 118px);
+        border:1px solid $borderColor;
+        box-sizing:border-box;
+        color:$fontColor4;
+        font-size:$fontSizeXS;
+        line-height:$lineheight;
+        text-align:left;
+        background:$secondaryColor;
+      }
+      .adm_chk {
+        margin-top:24px;
+      }
+      +.adm_btn_l {
+        font-weight:bold;
+      }
+    }
+    +.adm_wrap_btns {
+      padding:40px 0;
+    }
+  }
+  .adm_wrap_btns {
+    .adm_btn_l {
+      width:182px;
+      &[class*="type_"] {
+        font-weight:bold;
+      }
+    }
   }
 }

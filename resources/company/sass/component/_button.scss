@@ -10,7 +10,7 @@
   // color
   @include buttonColoring("primary", $primaryColor, $black, 80%);
   @include buttonColoring("gray", $primaryColorGray, $black, 80%);
-  @include buttonColoring("yellow", $primaryColorYellow, $black, 80%);
+ // @include buttonColoring("yellow", $primaryColorYellow, $black, 80%);
   @include prefix(transition, all 0.15s, ms webkit);
   white-space:nowrap;
   &.type_border {
@@ -20,12 +20,12 @@
       border-color:$primaryColor;
       color:$white;
       background-color:$primaryColor;
-      > [class^="ico_"] {
+      /*> [class^="ico_"] {
         &:not(.reverse):before,
         &.reverse:after {
           background-position-x:100%;
         }
-      }
+      }*/
     }
   }
   &:disabled,
@@ -36,7 +36,7 @@
     cursor:default;
   }
 
-  // icon
+  /* icon
   > [class^="ico_"] {
     display:inline-block;
     vertical-align:top;
@@ -50,9 +50,41 @@
       background-repeat:no-repeat;
       content:"";
     }
+  }*/
+  > .arrow {
+    display:inline-block;
+    vertical-align:top;
+    pointer-events:none;
+    &:not(.reverse):before,
+    &.reverse:after {
+      display:inline-block;
+      margin-bottom:1px;
+      @include size(7px, 7px);
+      border:1px solid #444;
+      vertical-align:middle;
+      @include prefix(transform, rotate(-45deg), webkit ms);
+      content:"";
+    }
+    &:not(.reverse):before {
+      margin-right:4px;
+      border-right-width:0;
+      border-bottom-width:0;
+    }
+    &.reverse:after {
+      margin-left:4px;
+      border-left-width:0;
+      border-top-width:0;
+    }
+  }
+  &[class*="type_"]:not(.type_border) {
+    > .arrow {
+      &:before,
+      &:after {
+        border-color:$white;
+      }
+    }
   }
 }
-
 .adm_btn {
   // size
   @each $class, $size in ("l", $sizeL), ("m", $sizeM), ("s", $sizeS) {
@@ -89,7 +121,7 @@
     @include makePseudoIcon();
     @include size(16px);
     margin:2px 3px 0 0;
-  background:url($imageIco + "ico_refresh.png") no-repeat 0 50%;
+    background:url($imageVqIco + "ico_refresh.png") no-repeat 0 50%;
     @at-root .darken & {
       background-position-x:-16px;
     }
@@ -99,7 +131,7 @@
     cursor:default;
   }
 }
-
+/*
 .btn_remove_item {
   position:relative;
   padding:0 10px 3px;
@@ -146,7 +178,14 @@
     @include size(9px, 1px);
   }
 }
-
+*/
+.adm_wrap_btns {
+  padding:90px 0;
+  text-align:center;
+  >[class^="adm_btn_"] {
+    margin:0 2px;
+  }
+}
 
 // button grouping
 .group_button {

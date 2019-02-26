@@ -65,6 +65,49 @@
   .fit_content {
     margin-top:15px;
     border-top:2px solid #000;
+    &.rank_aplus .fitColor{
+      font-weight:bold;
+      color:$fitColorAPlus;
+    }
+    &.rank_a .fitColor{
+      font-weight:bold;
+      color:$fitColorA;
+    }
+    &.rank_b .fitColor{
+      font-weight:bold;
+      color:$fitColorB;
+    }
+    &.rank_c .fitColor{
+      font-weight:bold;
+      color:$fitColorC;
+    }
+    &.rank_d .fitColor{
+      font-weight:bold;
+      color:$fitColorD;
+    }
+    &.rank_nonpass .fitColor{
+      font-weight:bold;
+      color:$fitColorNonePass;
+    }
+
+    &.rank_aplus .area_grade > .grade {
+      @include bgGradient(aplus);
+    }
+    &.rank_a .area_grade > .grade {
+      @include bgGradient(a);
+    }
+    &.rank_b .area_grade > .grade {
+      @include bgGradient(b);
+    }
+    &.rank_c .area_grade > .grade {
+      @include bgGradient(c);
+    }
+    &.rank_d .area_grade > .grade {
+      @include bgGradient(d);
+    }
+    &.rank_nonpass .area_grade > .grade {
+      @include bgGradient(nonpass);
+    }
     .fit_top {
       @include prefix(display,flex, webkit ms);
       border-right:1px solid #d5d5d9;
@@ -75,7 +118,6 @@
         float:left;
         .grade {
           @include size(261px,290px);
-          background-image: linear-gradient(to left, #603aeb, #5246ff);
           position:relative;
           .title {
             .icon {
@@ -89,7 +131,7 @@
             display:inline-block;
             position: absolute;
             right:15px;
-            top:1px;
+            top:0;
             .icon {
               @include size(62px,64px);
             }
@@ -99,12 +141,12 @@
             text-align:center;
             .rank {
               .icon {
-                @include size(200px,101px);
+                @include size(200px,100px);
               }
             }
             .rank_txt {
               .icon {
-                @include size(200px,41px);
+                @include size(200px,40px);
               }
             }
           }
@@ -222,14 +264,7 @@
                   color:$fontColor9;
                   font-size:$fontSizeXSS;
                 }
-                &:nth-of-type(1):before {
-                  @include squareNumber('1');
-                }
-                &:nth-of-type(2):before {
-                  @include squareNumber('2');
-                }
-                &:nth-of-type(3):before {
-                  @include squareNumber('3');
+                &:last-of-type {
                   margin-bottom:0;
                 }
               }
@@ -303,7 +338,7 @@
           }
         }
         .rank {
-          margin-top:8px;
+          margin-top:18px;
           margin-left:36px;
           font-size:$fontSizeL;
           strong {
@@ -348,7 +383,8 @@
         @include prefix(box-sizing,border-box, webkit ms);
         position:relative;
         width:50%;
-        padding:27px 31px 33px 31px;
+        padding:27px 31px 25px 31px;
+        min-height:281px;
         &:first-of-type{
           margin:0;
         }
@@ -370,6 +406,67 @@
           top:calc(50% - 20px);
         }
       }
+      .radar_legend {
+        position: absolute;
+        bottom:30px;
+        left:31px;
+        color:$fontColor8;
+        font-size:$fontSizeXS;
+        letter-spacing:$letterspacing;
+        font-weight:bold;
+        li:nth-child(1) {
+          margin-bottom:10px;
+          .icon {
+            @include size(11px,9px);
+          }
+        }
+        li:nth-child(2) {
+          .icon {
+            @include size(11px,11px);
+          }
+        }
+      }
+
+
+      .radarchart {
+        position: absolute;
+        top:28px;
+        right:14px;
+        text-align:right;
+      }
+      .radarchart .line {
+        stroke:#e8e8e8;
+      }
+      .radarchart .legend {
+        font-size:$fontSizeXSS;
+        fill:$fontColor7;
+        &.legend_score {
+          color:$fontColor2;
+        }
+      }
+      .line_median {
+        stroke:#0c0c0c;
+        stroke-dasharray:3;
+      }
+
+      .combie_chart {
+        overflow:visible;
+        .lable_txt2 {
+          color:$fontColor3;
+          font-size:$fontSizeXSS;
+          text-anchor: end;
+        }
+        .median_txt {
+          font-size:$fontSizeXS;
+        }
+        .median_title {
+          font-size:$fontSizeXS;
+          font-weight:bold;
+        }
+      }
+      .radar-chart-serie1 {
+        stroke-dasharray:2;
+      }
     }
     .fit_bot {
       @include prefix(box-sizing,border-box, webkit ms);
@@ -378,14 +475,20 @@
       border:1px solid #d5d5d9;
       border-top:0;
     }
+    .list_num {
+      @include squareNumber();
+    }
     .half_colum {
       width:349px;
       float:left;
       &:first-of-type {
         margin-right:18px;
       }
+      &:last-of-type {
+        float:right;
+      }
       h4 {
-        @include size(349px,35px);
+        @include size(100%,35px);
         line-height:35px;
         background-color:#f3f3f3;
         color:$fontColor7;
@@ -397,22 +500,13 @@
         }
       }
       ol {
-        width:349px;
+        width:100%;
         float:left;
         li {
           padding:10px 0 12px 0;
           border-top:1px solid #d5d5d9;
           &:first-child {
             border-top:0;
-          }
-          &:nth-of-type(1) dt:before {
-            @include squareNumber('1');
-          }
-          &:nth-of-type(2) dt:before {
-            @include squareNumber('2');
-          }
-          &:nth-of-type(3) dt:before {
-            @include squareNumber('3');
           }
         }
         dt {
@@ -450,152 +544,140 @@
       @include headingH3Style();
       margin-bottom:12px;
     }
-    .fitColorAPlus{
+    .fitColorAPlus {
+      font-weight:bold;
       color:$fitColorAPlus;
-      font-weight:bold;
     }
-    .fitColorA{
+    .fitColorA {
+      font-weight:bold;
       color:$fitColorA;
-      font-weight:bold;
     }
-    .fitColorB{
+    .fitColorB {
+      font-weight:bold;
       color:$fitColorB;
-      font-weight:bold;
     }
-    .fitColorC{
+    .fitColorC {
+      font-weight:bold;
       color:$fitColorC;
-      font-weight:bold;
     }
-    .fitColorD{
+    .fitColorD {
+      font-weight:bold;
       color:$fitColorD;
-      font-weight:bold;
     }
-    .fitColorNone{
-      color:$fitColorNone;
+    .fitColorC {
       font-weight:bold;
+      color:$fitColorNonePass;
     }
   }
+
 }
-
-
 
 .svg_symbol {
   display:none;
 }
 
-@page print_area_result {
-  width: 595px;
-  height: 842px;
-}
 
+@page print_area_result {
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 2cm;
+  margin: 0 auto;
+}
 
 
 @media print {
-  body, .print_area_result {
-    margin:35px 15px 20px 15px;
+
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
   }
   .print_area_result {
     page: print_area_result;
-    background:#fff;
-    margin:35px 15px 20px 15px;
-  }
-  .print_area_result {
-    .headline {
-      position: relative;
-      .ci {
-        display:block;
-        width:100px;
-        height:20px;
-        margin-bottom:8px;
-        $fontSizeL:14px;
-        letter-spacing:$letterspacing;
-        img {
-          max-width:100%;
-          max-height:20px;
-        }
+    margin: 0;
+    padding:0;
+    page-break-after: always;
+    .result_table tbody td {
+      font-size:8px;
+      padding:7px 0;
+      &:nth-child(1) {
+        font-size:8px;
       }
-      .title {
-        @include ellipsis(70%);
-
-        color:$fontColor7;
-        font-size:$fontSize2XL;
-        line-height:21px;
-      }
-      .fit_title {
-        position: absolute;
-        right:0;
-        top:17px;
-        text-align:left;
-        color:$fontColor7;
-        font-size:$fontSizeXS;
-        font-weight:bold;
-        letter-spacing:$letterspacing;
-      }
-      .fit_info {
-        position: absolute;
-        right:0;
-        bottom:0;
-        text-align:right;
-        span {
-          display:inline-block;
-          color:$fontColor7;
-          font-size:$fontSize2XS;
-          .icon {
-            margin-right:4px;
-            @include size(8px,9px);
-          }
-        }
-        .info_name {
-          em {
-            font-weight:bold;
-          }
-        }
+      &:nth-child(2) {
+        font-size:10px;
       }
     }
-  }
-
-
-  .fit_content {
-    margin-top:11px;
-    border-top:2px solid #000;
-    .fit_top {
-      display:flex;
-      border-bottom:1px solid #d5d5d9;
-      @include clearfix();
-      .area_grade {
-        @include size(177px,227px);
-        float:left;
-        .grade {
-          @include size(177px,188px);
-          background-image: linear-gradient(to left, #603aeb, #5246ff);
-          position:relative;
-          .title {
-            .icon {
-              position: absolute;
-              left:20px;
-              top:15px;
-              @include size(37px,10px);
+    .fit_content {
+      .fit_top {
+        .area_grade {
+          > .grade {
+            background-image:$white;
+          }
+        }
+        .area_detail {
+          width:calc(100% - 261px);
+          .area_rank {
+            width:100%;
+            .apply_rank {
+              width:51%;
+            }
+            .total_rank {
+              width:49%;
+              .list {
+                li {
+                  margin-bottom:10px;
+                }
+              }
             }
           }
-          .badge {
-            .icon {
-              position: absolute;
-              right:10px;
-              top:0;
-              @include size(42px,44px);
+          .area_bigdata{
+            width:100%;
+            .area_scatter {
+              left:312px;
             }
           }
         }
       }
-      .area_detail {
-        @include size(357px,227px);
-        float:right;
+      .fit_mid {
+        padding:21px 31px 27px 31px;
+      }
+      .half_colum {
+        width:50%;
+        &:first-of-type {
+          width:calc(50% - 18px);
+        }
+        h4 {
+          width:100%;
+          font-size:8px;
+          height:20px;
+          line-height:20px;
+        }
+        ol {
+          width:100%;
+          li {
+            padding:7px 0 8px 0;
+            dt {
+              @include prefix(box-sizing,border-box, webkit ms);
+              width:100px;
+              font-size:8px;
+              line-height:17px;
+            }
+            dd {
+              @include prefix(box-sizing,border-box, webkit ms);
+              width:calc(100% - 110px);
+              margin-top:7px;
+              font-size:7px;
+              line-height:17px;
+            }
+          }
+        }
+      }
+      .combie {
         text-align:center;
       }
+      .combie_chart {
+        @include prefix(transform,scale(1.2, 1), webkit ms);
+      }
     }
   }
-  .ggg {
-    text-align: center;
-  }
 }
-

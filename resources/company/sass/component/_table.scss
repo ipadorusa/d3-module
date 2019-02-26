@@ -4,6 +4,24 @@
   line-height:$lineheight;
   table-layout:fixed;
   word-break:break-all;
+  > tbody {
+    > tr {
+      > td {
+        &.align_l {
+          text-align:left;
+        }
+        &.align_r {
+          text-align:right;
+        }
+        &.align_c {
+          text-align:center;
+        }
+        a:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+  }
 }
 
 .adm_tbl_list {
@@ -17,6 +35,13 @@
       border-bottom:1px solid $borderColor;
       font-size:$fontSize2XS;
       background:$secondaryColor;
+      span {
+        display:block;
+        color:$fontColor;
+        font-size:$fontSizeXSS;
+        font-weight:normal;
+        letter-spacing:$letterspacing;
+      }
     }
   }
   > tbody {
@@ -26,25 +51,22 @@
         height:18px;
         border-bottom:1px solid mix($borderColor, $white, 50);
         text-align:center;
-        &.align_l {
-          text-align:left;
-        }
-        &.align_r {
-          text-align:right;
-        }
-        a:hover {
+        .move_link {
+          color:#5a82f0;
+          font-weight:bold;
           text-decoration:underline;
         }
       }
     }
   }
 }
+
 .adm_tbl_form {
-  margin-top:40px;
+  margin-top:22px;
   .tit_tbl {
     display:block;
-    padding:30px 0 20px;
-    border-top:1px solid #f0f1f5;
+    padding:30px 0 12px;
+    border-top:1px solid $lightGray;
     font-size:$fontSize2L;
     font-weight:bold;
     line-height:27px;
@@ -57,6 +79,11 @@
       border-top:0;
     }
   }
+  .txt_message {
+    color:$fontColor4;
+    font-size:12px;
+    line-height:16px;
+  }
   > tbody {
     > tr {
       > th,
@@ -66,13 +93,13 @@
         vertical-align:top;
       }
       > th {
-        padding:6px 0 5px;
+        padding:8px 0;
         font-weight:normal;
         text-align:left;
         font-size:$fontSize2XS;
       }
       > td {
-        padding:6px 20px 6px 22px;
+        padding:8px 20px;
       }
     }
   }
@@ -80,6 +107,127 @@
     border-top:1px solid mix($borderColor, $white, 50);
   }
 }
+
+.adm_tbl_excel {
+  margin-bottom:3px;
+  width:auto;
+  letter-spacing:-.5px;
+  th {
+    position:relative;
+    height:27px;
+    border-right:1px solid $borderColor2;
+    box-sizing:border-box;
+    font-size:$fontSizeXS;
+    &.on {
+      background:$lightGray;
+      &:before {
+        position:absolute;
+        background:#308b12;
+        content:"";
+      }
+    }
+  }
+  > thead {
+    th {
+      &.on:before {
+        top:0;
+        right:-1px;
+        left:-1px;
+        height:2px;
+      }
+    }
+  }
+  > tbody {
+    th {
+      border-top:1px solid $borderColor2;
+      font-weight:normal;
+      &.on:before {
+        top:-1px;
+        bottom:-1px;
+        left:0;
+        width:2px;
+      }
+    }
+    td {
+      position:relative;
+      height:27px;
+      border-top:1px solid $borderColor2;
+      border-right:1px solid $borderColor2;
+      box-sizing:border-box;
+      cursor:pointer;
+      text-align:left;
+      .txt_data {
+        padding:4px 7px;
+      }
+      .inp_data {
+        padding:5px 7px;
+        @include size($full, 25px);
+        border:0;
+      }
+    }
+  }
+  .adm_chk {
+    margin:0;
+    line-height:18px;
+    > input + .lbl:before {
+      margin:0;
+    }
+  }
+  td {
+    &.on:before {
+      position:absolute;
+      top:-1px;
+      left:-1px;
+      @include size($full);
+      border:1px solid #308b12;
+      content:"";
+    }
+    &.on:after {
+      position:absolute;
+      right:-3px;
+      bottom:-3px;
+      @include size(4px);
+      border:1px solid $white;
+      background:#308b12;
+      content:"";
+    }
+  }
+}
+
+.adm_tbl_board {
+  > thead {
+    th {
+      padding:9px 0 11px;
+      border-top:1px solid #d8d8d8;
+      color:#515157;
+      box-sizing:border-box;
+      font-weight:normal;
+      background:#f9f9fb;
+      &:first-child {
+        padding-left:12px;
+      }
+      &:last-child {
+        padding-right:12px;
+      }
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        padding:10px 0 13px;
+        border-bottom:1px solid #d8d8d8;
+        text-align:center;
+        &:first-child {
+          padding-left:12px;
+        }
+        &:last-child {
+          padding-right:12px;
+        }
+      }
+    }
+  }
+}
+
 .result_table {
   margin-top:11px;
   width:$full;
@@ -111,9 +259,11 @@
     border-bottom:1px solid #dbdbdb;
     &:nth-child(1) {
       color:$fontColor7;
+      font-weight:bold;
       font-size:$fontSize2XS;
       letter-spacing:$letterspacing;
       text-align:left;
+      padding-left:10px;
     }
     &:nth-child(2) {
       font-size:$fontSizeM;

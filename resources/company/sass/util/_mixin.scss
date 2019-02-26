@@ -207,7 +207,6 @@
 @mixin buttonIconVariation($class, $size) {
   $iconSize:mapDeepGet($buttonStyle, #{"size_" + $class}, icon_size);
   $iconGap:mapDeepGet($buttonStyle, #{"size_" + $class}, icon_gap);
-
   > [class^="ico_"] {
     &:not(.reverse):before,
     &.reverse:after {
@@ -301,55 +300,51 @@
 // 채용 검사 화살표
 @mixin beforeArrow($deg) {
   @include prefix(transform,rotate($deg), webkit ms);
-  content:'';
-  position: absolute;
-  left:-14px;
+  position:absolute;
   top:5px;
-  width:28px;
-  height:28px;
-  background:#f6f7fd;
+  left:-14px;
+  z-index:10;
+  @include size(28px);
   border-top:solid 1px currentColor;
   border-right:solid 1px currentColor;
-  z-index:10;
+  background:$contentColor;
+  content:"";
 }
 @mixin afterArrow($deg) {
-  @include prefix(transform,rotate($deg), webkit ms);
-  content:'';
-  position: absolute;
-  right:-14px;
+  position:absolute;
   top:5px;
-  width:28px;
-  height:28px;
-  background:#fff;
+  right:-14px;
+  z-index:10;
+  @include size(28px);
   border-top:solid 1px currentColor;
   border-right:solid 1px currentColor;
-  z-index:10;
+  background:#fff;
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:"";
 }
 @mixin nonAfterArrow($deg) {
-  @include prefix(transform,rotate($deg), webkit ms);
-  content:'';
-  position: absolute;
-  right:-14px;
+  position:absolute;
   top:5px;
-  width:28px;
-  height:28px;
-  background:#f6f7fd;
-  border-top:solid 1px #cfd1d7;
-  border-right:solid 1px #cfd1d7;
+  right:-15px;
   z-index:10;
+  @include size(28px);
+  border-top:1px solid $borderColorButton;
+  border-right:1px solid $borderColorButton;
+  background:$contentColor;
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:"";
 }
 @mixin nonBeforeArrow($deg) {
-  @include prefix(transform,rotate($deg), webkit ms);
-  content:'';
   position: absolute;
-  left:-16px;
   top:5px;
-  width:28px;
-  height:28px;
-  background:#f6f7fd;
-  border-top:solid 1px #cfd1d7;
-  border-right:solid 1px #cfd1d7;
+  left:-16px;
   z-index:1;
+  @include size(28px);
+  border-top:1px solid $borderColorButton;
+  border-right:1px solid $borderColorButton;
+  background:$contentColor;
+  @include prefix(transform,rotate($deg), webkit ms);
+  content:"";
 }
 @mixin headingH3Style() {
   color:$fontColor7;
@@ -363,7 +358,7 @@
   font-size:$fontSizeM;
   letter-spacing:$letterspacing;
 }
-@mixin squareNumber($olNumber) {
+@mixin squareNumber() {
   display:inline-block;
   margin-right:9px;
   color:$fontColor7;
@@ -374,5 +369,24 @@
   height:17px;
   text-align:center;
   line-height:15px;
-  content:$olNumber;
+}
+@mixin bgGradient($rank) {
+  @if $rank == $rank_aplus {
+    background-image: linear-gradient(to left, #603aeb, #5246ff);
+  }
+  @else if $rank == $rank_a {
+    background-image: linear-gradient(to left, #015ed4, #0087ec);
+  }
+  @else if $rank == $rank_b {
+    background-image: linear-gradient(to left, #00844d, #00a080);
+  }
+  @else if $rank == $rank_c {
+    background-image: linear-gradient(to left, #ff4e06, #fb6c00);
+  }
+  @else if $rank == $rank_d {
+    background-image: linear-gradient(to bottom, #f53b57, #f53b57), linear-gradient(to right, #fe1277, #ff3352);
+  }
+  @else if $rank == $rank_nonpass {
+    background-image:$white;
+  }
 }

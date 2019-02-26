@@ -17,7 +17,7 @@
         position:absolute;
         top:$marginCalendar;
         @include size(27px, 18px);
-        background:url($imageIco + "ico_calendar_year.png") no-repeat 50% 0;
+        background:url($imageVqIco + "ico_calendar_year.png") no-repeat 50% 0;
       }
       &.btn_year_prev {
         left:0;

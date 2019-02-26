@@ -1,24 +1,16 @@
 // lnb
 .adm_wrap_lnb {
+  overflow-x:hidden;
+  overflow-y:auto;
   position:fixed;
   top:0;
   bottom:0;
   left:0;
   z-index:$zindexLnb;
   width:$widthLnb;
-  @include fontDefault();
-
-}
-
-.adm_lnb {
-  overflow-x:hidden;
-  overflow-y:auto;
-  position:relative;
-  z-index:$zindexLnbInner;
-  width:$full;
-  height:100%;
-  box-shadow:$effectShadow;
   box-sizing:border-box;
+  box-shadow:$effectShadow;
+  @include fontDefault();
   font-size:$fontSize2XS;
   background:$white;
   @include changeScroll($white, #ddd);
@@ -31,7 +23,7 @@
     text-align:center;
     .logo {
       @include size(200px, 40px);
-      margin:0 auto 28px;
+      margin:0 0 28px 5px;
       img {
         max-width:$full;
         max-height:$full;
@@ -39,7 +31,8 @@
     }
     .tit_company {
       display:block;
-      padding:0 10px;
+      margin-left:10px;
+      width:190px;
       font-size:$fontSize2M;
       font-weight:normal;
       line-height:23px;
@@ -50,7 +43,6 @@
       right:7px;
     }
   }
-
   li.on {
     > a {
       color:$primaryColor;

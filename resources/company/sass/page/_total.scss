@@ -1,0 +1,100 @@
+.print_area_total {
+  margin:0 auto;
+  padding:45px 50px;
+  width:880px;
+  box-sizing:border-box;
+  color:$black;
+  letter-spacing:$letterspacing;
+
+  &.adm_grid {
+    .row {
+      padding-bottom:54px
+    }
+  }
+
+  .tit_total_result {
+    padding-bottom:45px;
+    font-size:33px;
+    line-height:1.35;
+    text-align:center;
+  }
+  .tit_board {
+    margin-right:-10%;
+    padding-bottom:20px;
+    font-size:$fontSize2M;
+    font-weight:normal;
+    line-height:1.4;
+  }
+  .adm_tbl_board {
+    width:369px;
+  }
+  .txt_info {
+    padding-top:12px;
+    color:$fontColor3;
+    font-size:12px;
+    line-height:16px;
+  }
+  .wrap_graph_result {
+    position:relative;
+    margin:23px 0 0 8px;
+    .label {
+      position:absolute;
+      top:16px;
+      right:0;
+      color:$fontColor3;
+      font-size:12px;
+      line-height:16px;
+    }
+  }
+  .rank_graph {
+    .labels {
+      @include prefix('transform', translate(13px, 0), webkit ms);
+      color:$fontColor7;
+      font-size:$fontSizeXS;
+    }
+    &.type03 {
+      .labels {
+        @include prefix('transform', translate(4px, -2px), webkit ms);
+      }
+      .txt_value {
+        .labels {
+          @include prefix('transform', translate(11px, -2px), webkit ms);
+        }
+      }
+    }
+  }
+  .dounut_chart {
+    .txt_value {
+      fill:$white;
+      font-size:$fontSizeXS;
+      font-weight:bold;
+    }
+  }
+  .label_list {
+    position: absolute;
+    right:0;
+    top:81px;
+    color:$fontColor7;
+    font-size:$fontSizeXS;
+    li {
+      margin-bottom:7px;
+      line-height:17px;
+      span {
+        @include size(12px);
+        display:inline-block;
+        margin:3px 3px 0 0;
+        vertical-align:top;
+      }
+      &:nth-child(1) {
+        span {
+          background:#0058cf;
+        }
+      }
+      &:nth-child(2) {
+        span {
+          background:#1cb5ff;
+        }
+      }
+    }
+  }
+}
